@@ -1,0 +1,25 @@
+{
+  "name": "learn-javascript",
+  "version": "1.0.0",
+  "description": "欢迎 Star，关注请 Watch",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "gitbook-plugin-comment": "^1.0.5",
+    "gitbook-plugin-disqus": "^0.1.0",
+    "gitbook-plugin-katex": "^1.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "serve": "gitbook serve ./ ./docs",
+    "build": "gitbook build ./ ./docs"
+  },
+  "keywords": [
+    "javascript",
+    "nodejs"
+  ],
+  "author": "xiaomuchen",
+  "license": "MIT"
+}
