@@ -5,4 +5,4 @@
 #### 目录
 
 - [序章](https://cheogo.github.io/learn-javascript/201709/preface.html)
-- [javascript 起源](https://cheogo.github.io/learn-javascript/201709/origin.html)
+- [JavaScript 起源](https://cheogo.github.io/learn-javascript/201709/origin.html)
