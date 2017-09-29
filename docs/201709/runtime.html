@@ -1,0 +1,308 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>运行时、V8、JIT、基线编译器 · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="origin.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="preface.html">
+            
+                <a href="preface.html">
+            
+                    
+                    序章
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="origin.html">
+            
+                <a href="origin.html">
+            
+                    
+                    JavaScript 起源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="runtime.html">
+            
+                <a href="runtime.html">
+            
+                    
+                    运行时、V8、JIT、基线编译器
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >运行时、V8、JIT、基线编译器</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x8FD0;&#x884C;&#x65F6;&#x3001;v8&#x3001;jit&#x3001;&#x57FA;&#x7EBF;&#x7F16;&#x8BD1;&#x5668;">&#x8FD0;&#x884C;&#x65F6;&#x3001;V8&#x3001;JIT&#x3001;&#x57FA;&#x7EBF;&#x7F16;&#x8BD1;&#x5668;</h1><h4 id="javascript-&#x662F;&#x5982;&#x4F55;&#x6267;&#x884C;&#x7684;">JavaScript &#x662F;&#x5982;&#x4F55;&#x6267;&#x884C;&#x7684;</h4><p>&#x5BF9;&#x4E8E;&#x5E38;&#x89C1;&#x7F16;&#x8BD1;&#x578B;&#x8BED;&#x8A00;&#xFF08;&#x4F8B;&#x5982;&#xFF1A;Java&#xFF09;&#x6765;&#x8BF4;&#xFF0C;&#x7F16;&#x8BD1;&#x6B65;&#x9AA4;&#x5206;&#x4E3A;&#xFF1A;&#x8BCD;&#x6CD5;&#x5206;&#x6790;-&gt;&#x8BED;&#x6CD5;&#x5206;&#x6790;-&gt;&#x8BED;&#x4E49;&#x68C0;&#x67E5;-&gt;&#x4EE3;&#x7801;&#x4F18;&#x5316;&#x548C;&#x5B57;&#x8282;&#x751F;&#x6210;&#x3002;
+&#x5BF9;&#x4E8E;&#x89E3;&#x91CA;&#x578B;&#x8BED;&#x8A00;&#xFF08;&#x4F8B;&#x5982; JavaScript&#xFF09;&#x6765;&#x8BF4;&#xFF0C;&#x901A;&#x8FC7;&#x8BCD;&#x6CD5;&#x5206;&#x6790; -&gt; &#x8BED;&#x6CD5;&#x5206;&#x6790; -&gt; &#x8BED;&#x6CD5;&#x6811;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F00;&#x59CB;&#x89E3;&#x91CA;&#x6267;&#x884C;&#x4E86;&#x3002;</p><p><img src="../assets/2017_09_01.png"></p><p>&#x5177;&#x4F53;&#x8FC7;&#x7A0B;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;
+1. &#x8BCD;&#x6CD5;&#x5206;&#x6790;&#x662F;&#x5C06;&#x5B57;&#x7B26;&#x6D41;(char stream)&#x8F6C;&#x6362;&#x4E3A;&#x8BB0;&#x53F7;&#x6D41;(token stream)</p><pre><code>NAME &quot;AST&quot;  
+EQUALS  
+NAME &quot;is Tree&quot;  
+SEMICOLON </code></pre>
+<ol><li>&#x8BED;&#x6CD5;&#x5206;&#x6790;&#x6210; AST (Abstract Syntax Tree)&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x8FD9;&#x91CC;&#x8BD5;&#x8BD5;<a href="http://esprima.org/demo/parse.html#" target="_blank">http://esprima.org/</a>
+</li>
+<li>&#x9884;&#x7F16;&#x8BD1;&#xFF0C;&#x5F53;JavaScript&#x5F15;&#x64CE;&#x89E3;&#x6790;&#x811A;&#x672C;&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x5728;&#x9884;&#x7F16;&#x8BD1;&#x671F;&#x5BF9;&#x6240;&#x6709;&#x58F0;&#x660E;&#x7684;&#x53D8;&#x91CF;&#x548C;&#x51FD;&#x6570;&#x8FDB;&#x884C;&#x5904;&#x7406;&#xFF01;&#x5E76;&#x4E14;&#x662F;&#x5148;&#x9884;&#x58F0;&#x660E;&#x53D8;&#x91CF;&#xFF0C;&#x518D;&#x9884;&#x5B9A;&#x4E49;&#x51FD;&#x6570;&#xFF01;
+</li>
+<li><p>&#x89E3;&#x91CA;&#x6267;&#x884C;&#xFF0C;&#x5728;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;JavaScript &#x5F15;&#x64CE;&#x662F;&#x4E25;&#x683C;&#x6309;&#x7740;&#x4F5C;&#x7528;&#x57DF;&#x673A;&#x5236;&#xFF08;scope&#xFF09;&#x6765;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x5E76;&#x4E14; JavaScript &#x7684;&#x53D8;&#x91CF;&#x548C;&#x51FD;&#x6570;&#x4F5C;&#x7528;&#x57DF;&#x662F;&#x5728;&#x5B9A;&#x4E49;&#x65F6;&#x51B3;&#x5B9A;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x6267;&#x884C;&#x65F6;&#x51B3;&#x5B9A;&#x7684;&#x3002;JavaScript &#x4E2D;&#x7684;&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;&#x5728;&#x51FD;&#x6570;&#x4F53;&#x5185;&#x6709;&#x6548;&#xFF0C;&#x65E0;&#x5757;&#x4F5C;&#x7528;&#x57DF;&#xFF1B;</p><pre><code>function func(){
+ for(var i = 0; i &lt; array.length; i++){  
+   //do something here.  
+ }
+ //&#x6B64;&#x65F6; i &#x4ECD;&#x7136;&#x6709;&#x503C;&#xFF0C;&#x53CA; i == array.length  
+ console.log(i); // &#x4F46;&#x5728; java &#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x5219;&#x65E0;&#x6548;
+}</code></pre>
+<p>JavaScript&#x5F15;&#x64CE;&#x901A;&#x8FC7;&#x4F5C;&#x7528;&#x57DF;&#x94FE;&#xFF08;scope chain&#xFF09;&#x628A;&#x591A;&#x4E2A;&#x5D4C;&#x5957;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x4E32;&#x8FDE;&#x5728;&#x4E00;&#x8D77;&#xFF0C;&#x5E76;&#x501F;&#x52A9;&#x8FD9;&#x4E2A;&#x94FE;&#x6761;&#x5E2E;&#x52A9; JavaScript &#x89E3;&#x91CA;&#x5668;&#x68C0;&#x7D22;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x3002;&#x8FD9;&#x4E2A;&#x4F5C;&#x7528;&#x57DF;&#x94FE;&#x76F8;&#x5F53;&#x4E8E;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#x8868;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;&#x7F16;&#x53F7;&#x6765;&#x5B58;&#x50A8;&#x5B83;&#x4EEC;&#x7684;&#x5D4C;&#x5957;&#x5173;&#x7CFB;&#x3002;&#x5F53; JavaScript &#x89E3;&#x91CA;&#x5668;&#x68C0;&#x7D22;&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x4F1A;&#x6309;&#x7740;&#x8FD9;&#x4E2A;&#x7D22;&#x5F15;&#x7F16;&#x53F7;&#x8FDB;&#x884C;&#x5FEB;&#x901F;&#x67E5;&#x627E;&#xFF0C;&#x76F4;&#x5230;&#x627E;&#x5230;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF08;global object&#xFF09;&#x4E3A;&#x6B62;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x503C;&#xFF0C;&#x5219;&#x4F20;&#x9012;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684; undefined &#x503C;&#x3002;</p><pre><code>var scope = &quot;global&quot;;
+scopeTest();
+function scopeTest(){  
+ console.log(scope);  
+ var scope = &quot;local&quot;;  
+ console.log(scope); 
+}
+&#x6253;&#x5370;&#x7ED3;&#x679C;&#xFF1A;undefined&#xFF0C;local&#xFF1B;</code></pre>
+</li></ol>
+<h4 id="jit">JIT</h4><p>JavaScript &#x5F15;&#x64CE;&#x6709;&#x8BB8;&#x591A;&#x79CD;&#xFF0C;&#x6211;&#x4EEC;&#x5E38;&#x8BF4;&#x7684; V8 &#x662F; Google &#x53D1;&#x5E03;&#x7684;&#x5F00;&#x6E90; JavaScript &#x5F15;&#x64CE;&#xFF0C;&#x91C7;&#x7528; C++ &#x7F16;&#x5199;&#x3002;SpiderMonkey &#x662F; Mozilla &#x9879;&#x76EE;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x7528; C &#x8BED;&#x8A00;&#x5B9E;&#x73B0;&#x7684; JavaScript &#x811A;&#x672C;&#x5F15;&#x64CE;&#xFF0C;&#x53E6;&#x5916;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x53EB;&#x505A; Rhino &#x7684; Java &#x7248;&#x672C;&#x3002;</p><p>&#x56E0;&#x4E3A; Nodejs &#x4F9D;&#x8D56;&#x4E8E; V8 &#x5F15;&#x64CE;&#x5F00;&#x53D1;&#xFF0C;&#x6240;&#x4EE5;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x5185;&#x5BB9;&#x662F; JavaScript &#x5728; V8 &#x5F15;&#x64CE;&#x4E2D;&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x3002;</p><p>// TODO</p><blockquote><p>&#x53C2;&#x8003;</p><ul><li><a href="http://blog.csdn.net/celte/article/details/39412683" target="_blank">&#x7406;&#x89E3; JavaScript &#x7684;&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E0E;&#x8FD0;&#x884C;&#x673A;&#x5236;</a>
+</li>
+<li><a href="http://www.iteye.com/news/30731" target="_blank">JavaScript&#x7684;&#x8BED;&#x6CD5;&#x89E3;&#x6790;&#x4E0E;&#x62BD;&#x8C61;&#x8BED;&#x6CD5;&#x6811;</a>
+</li>
+<li><a href="http://www.cnblogs.com/gdutbean/archive/2012/02/21/2362003.html" target="_blank">JavaScript &#x6709;&#x54EA;&#x4E9B;&#x5F15;&#x64CE;</a>
+</li>
+<li><a href="https://my.oschina.net/sub/blog/152628" target="_blank">V8 Design Elements</a>
+</li>
+<li><a href="http://huziketang.com/blog/posts/detail?postId=58c12f36a6d8a07e449fdd22" target="_blank">JavaScript Just-in-time (JIT) &#x5DE5;&#x4F5C;&#x539F;&#x7406;</a>
+</li>
+<li><a href="http://www.cnblogs.com/hyddd/archive/2013/02/06/2908110.html" target="_blank">JS&#x7279;&#x6027;&#x6027;&#x80FD;&#x7F3A;&#x9677;&#x53CA;JIT&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;</a>
+</li></ul>
+</blockquote>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="origin.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: JavaScript 起源">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"运行时、V8、JIT、基线编译器","level":"1.4","depth":1,"previous":{"title":"JavaScript 起源","level":"1.3","depth":1,"path":"201709/origin.md","ref":"201709/origin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex","livereload"],"pluginsConfig":{"katex":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201709/runtime.md","mtime":"2017-09-29T16:21:38.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-09-29T14:37:03.303Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
