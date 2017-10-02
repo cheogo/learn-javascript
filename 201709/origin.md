@@ -24,8 +24,8 @@ Eich 说，JavaScript 是 C 语言和 Self 语言的结合，我想无论怎样 
 
 下一章开始，让我们直接上干货。
 
-> 参考文献：
-- [关于JavaScript诞生之初的趣事](http://www.cnblogs.com/xiaoyang002/p/4137975.html)
-- [JavaScript 诞生记](http://www.ruanyifeng.com/blog/2011/06/birth_of_javascript.html)
-- [Brendan Eich 的自述](https://brendaneich.com/2008/04/popularity/)
-- [ecma 规范制定](http://www.ruanyifeng.com/blog/2015/11/ecmascript-specification.html)
+------
+
+作者：肖沐宸，[github](https://github.com/cheogo)。
+
+> 参考文章-01
