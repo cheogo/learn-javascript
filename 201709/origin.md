@@ -27,5 +27,3 @@ Eich 说，JavaScript 是 C 语言和 Self 语言的结合，我想无论怎样 
 ------
 
 作者：肖沐宸，[github](https://github.com/cheogo)。
-
-> 参考文章-01
