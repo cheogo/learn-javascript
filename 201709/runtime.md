@@ -94,4 +94,4 @@ function scopeTest(){
 
 ------
 
-作者：肖沐宸，[github](https://github.com/cheogo)。
+作者：肖沐宸，[github](https://github.com/cheogo/learn-javascript)。

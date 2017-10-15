@@ -17,4 +17,7 @@ Definition for this term
 - [JS特性性能缺陷及JIT的解决方案](http://www.cnblogs.com/hyddd/archive/2013/02/06/2908110.html)
 
 ## 参考文章-201710-eventloop
+- [再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html)
+- [Event Loop Design](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
+- [JavaScript 中的实现](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
 
