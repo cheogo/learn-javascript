@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>序章 · GitBook</title>
+        <title>JavaScript 高阶函数 · GitBook</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -61,10 +61,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="origin.html" />
     
-    
-    <link rel="prev" href="../" />
+    <link rel="prev" href="eventloop.html" />
     
 
     </head>
@@ -106,9 +104,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="preface.html">
+        <li class="chapter " data-level="1.2" data-path="../201709/preface.html">
             
-                <a href="preface.html">
+                <a href="../201709/preface.html">
             
                     
                     序章
@@ -119,9 +117,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="origin.html">
+        <li class="chapter " data-level="1.3" data-path="../201709/origin.html">
             
-                <a href="origin.html">
+                <a href="../201709/origin.html">
             
                     
                     JavaScript 起源
@@ -132,9 +130,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="runtime.html">
+        <li class="chapter " data-level="1.4" data-path="../201709/runtime.html">
             
-                <a href="runtime.html">
+                <a href="../201709/runtime.html">
             
                     
                     JavaScript 语法解析、AST、V8、JIT
@@ -145,9 +143,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="../201710/eventloop.html">
+        <li class="chapter " data-level="1.5" data-path="eventloop.html">
             
-                <a href="../201710/eventloop.html">
+                <a href="eventloop.html">
             
                     
                     Event Loop
@@ -158,9 +156,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="../201710/funtion.html">
+        <li class="chapter active" data-level="1.6" data-path="funtion.html">
             
-                <a href="../201710/funtion.html">
+                <a href="funtion.html">
             
                     
                     JavaScript 高阶函数
@@ -201,7 +199,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >序章</a>
+        <a href=".." >JavaScript 高阶函数</a>
     </h1>
 </div>
 
@@ -216,7 +214,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5E8F;&#x7AE0;">&#x5E8F;&#x7AE0;</h1><h4 id="&#x8D77;&#x56E0;">&#x8D77;&#x56E0;</h4><p>&#x56E0;&#x4E3A;&#x5DE5;&#x4F5C;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x5F88;&#x591A;&#x725B;&#x4EBA;&#x5C31;&#x5728;&#x4F60;&#x773C;&#x524D;&#x3002;&#x4ED6;&#x4EEC;&#x89C6;&#x91CE;&#x5E7F;&#x9614;&#x3001;&#x601D;&#x60F3;&#x5148;&#x8FDB;&#xFF0C;&#x4E0D;&#x65AD;&#x7684;&#x5F71;&#x54CD;&#x7740;&#x81EA;&#x5DF1;&#xFF0C;&#x4EFF;&#x4F5B;&#x81EA;&#x5DF1;&#x4E5F;&#x53D8;&#x5F97;&#x8FD9;&#x4E48; NB&#xFF0C;&#x7136;&#x800C;&#x73B0;&#x5B9E;&#x5F80;&#x5F80;&#x6253;&#x8138;&#xFF0C;&#x843D;&#x5230;&#x5B9E;&#x5904;&#x53D1;&#x73B0;&#x81EA;&#x5DF1;&#x8FD8;&#x662F;&#x6709;&#x5F88;&#x591A;&#x57FA;&#x7840;&#x6982;&#x5FF5;&#x7406;&#x4E0D;&#x6E05;&#x7684;&#x5730;&#x65B9;&#x3002;</p><p>&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#xFF0C;&#x5C06;&#x540C;&#x5927;&#x5BB6;&#x4E00;&#x8D77;&#x6DF1;&#x5165;&#x5730;&#x4E86;&#x89E3;&#x524D;&#x7AEF;&#x6838;&#x5FC3;&#x57FA;&#x7840;&#xFF0C;&#x63D0;&#x9AD8;&#x81EA;&#x5DF1;&#x7684;&#x786C;&#x5B9E;&#x529B;&#x3002;</p><h4 id="&#x5BF9;&#x8C61;&#x8BFB;&#x8005;">&#x5BF9;&#x8C61;&#x8BFB;&#x8005;</h4><p>&#x4E3B;&#x8981;&#x9762;&#x5411; 1 - 3 &#x5E74;&#x5DE5;&#x4F5C;&#x7ECF;&#x9A8C;&#xFF0C;&#x6216;&#x8005;&#x611F;&#x89C9;&#x81EA;&#x8EAB;&#x57FA;&#x7840;&#x4E0D;&#x5341;&#x5206;&#x624E;&#x5B9E;&#x7684;&#x524D;&#x7AEF;&#x5DE5;&#x4F5C;&#x8005;&#x3002;&#x5982;&#x679C;&#x9605;&#x8BFB;&#x6709;&#x6240;&#x6536;&#x83B7;&#xFF0C;&#x6B22;&#x8FCE;&#x7ED9;&#x4E2A; Star&#x3002;</p>
+                                <h1 id="javascript-&#x9AD8;&#x9636;&#x51FD;&#x6570;">JavaScript &#x9AD8;&#x9636;&#x51FD;&#x6570;</h1><p>// TODO</p><hr><p>&#x4F5C;&#x8005;&#xFF1A;&#x8096;&#x6C90;&#x5BB8;&#xFF0C;<a href="https://github.com/cheogo/learn-javascript" target="_blank">github</a>&#x3002;</p>
                                 
                                 </section>
                             
@@ -243,14 +241,10 @@
 
             
                 
-                <a href="../" class="navigation navigation-prev " aria-label="Previous page: 目录">
+                <a href="eventloop.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Event Loop">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="origin.html" class="navigation navigation-next " aria-label="Next page: JavaScript 起源">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -259,7 +253,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"序章","level":"1.2","depth":1,"next":{"title":"JavaScript 起源","level":"1.3","depth":1,"path":"201709/origin.md","ref":"201709/origin.md","articles":[]},"previous":{"title":"目录","level":"1.1","depth":1,"path":"README.md","ref":"./README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201709/preface.md","mtime":"2017-09-25T10:56:50.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-10-15T12:32:05.737Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JavaScript 高阶函数","level":"1.6","depth":1,"previous":{"title":"Event Loop","level":"1.5","depth":1,"path":"201710/eventloop.md","ref":"201710/eventloop.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201710/funtion.md","mtime":"2017-10-15T12:31:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-10-15T12:32:05.737Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
