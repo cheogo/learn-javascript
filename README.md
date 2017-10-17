@@ -8,4 +8,4 @@
 - [JavaScript 起源](https://cheogo.github.io/learn-javascript/201709/origin.html)
 - [JavaScript 语法解析、AST、V8、JIT](https://cheogo.github.io/learn-javascript/201709/runtime.html)
 - [Event loop](https://cheogo.github.io/learn-javascript/201710/eventloop.html)
-- [JavaScript 高阶函数](https://cheogo.github.io/learn-javascript/201710/funtion.html)
+- JavaScript 高阶函数
