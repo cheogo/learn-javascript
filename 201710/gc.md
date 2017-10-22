@@ -93,7 +93,7 @@ fn(); // a、b 的引用次数为 1
 [41204:0x102001c00] Memory reducer: call rate 0.003, low alloc, foreground
 ```
 
-首先我们可以看到 Node.js 区分 `New space`、`Old space` 等来划分检索空间。而提示`(+ 20.4 ms in 7 steps since start of marking, biggest step 4.8 ms)` 告诉我们这个标记的步骤分 7 步进行，耗时最长的一次时 4.8ms。这使 javaScript 可以很好的支持开发高实时应用。
+首先我们可以看到 Node.js 区分 `New space`、`Old space` 等来划分检索空间。而提示`(+ 20.4 ms in 7 steps since start of marking, biggest step 4.8 ms)` 告诉我们这个标记的步骤分 7 步进行，耗时最长的一次时 4.8ms。这使 JavaScript 可以很好的支持开发高实时应用。
 
 #### 总结
 

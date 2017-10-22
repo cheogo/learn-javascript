@@ -1,6 +1,4 @@
 
-## Term
-Definition for this term
 
 ## 参考文章-201709-origin
 - [关于JavaScript诞生之初的趣事](http://www.cnblogs.com/xiaoyang002/p/4137975.html)
