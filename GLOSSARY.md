@@ -21,6 +21,10 @@ Definition for this term
 - [Event Loop Design](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
 - [JavaScript 中的实现](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
 
-## 参考文章-201710-funtion
+## 参考文章-201710-gc
+- [跟我学习 javascript 的垃圾回收机制与内存管理](http://www.jb51.net/article/75292.htm)
+- [Node.js 调试 GC 以及内存暴涨的分析](http://blog.csdn.net/lihuifeng/article/details/51984442)
+- [COM 常见的内存泄漏及解决](http://blog.csdn.net/cplusplus_zk/article/details/4899194)
+- [V8 引擎设计](http://blog.csdn.net/hgl868/article/details/45095153)
 
 
