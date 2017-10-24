@@ -25,4 +25,10 @@
 - [COM 常见的内存泄漏及解决](http://blog.csdn.net/cplusplus_zk/article/details/4899194)
 - [V8 引擎设计](http://blog.csdn.net/hgl868/article/details/45095153)
 
+## 参考文章-201710-function
+- [JS原型、原型链深入理解](http://www.jb51.net/article/80109.htm)
+
+
+
+
 

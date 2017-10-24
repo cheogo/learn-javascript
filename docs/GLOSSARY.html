@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title> · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title> · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -172,7 +172,20 @@
                 <a href="201710/funtion.html">
             
                     
-                    JavaScript 高阶函数
+                    递归、闭包、原型、继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="201710/funtion2.html">
+            
+                <a href="201710/funtion2.html">
+            
+                    
+                    高阶函数、curry、函数式
             
                 </a>
             
@@ -225,40 +238,39 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201709-origin">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201709-origin</h2><ul><li><a href="http://www.cnblogs.com/xiaoyang002/p/4137975.html" target="_blank">&#x5173;&#x4E8E;JavaScript&#x8BDE;&#x751F;&#x4E4B;&#x521D;&#x7684;&#x8DA3;&#x4E8B;</a>
-</li>
-<li><a href="http://www.ruanyifeng.com/blog/2011/06/birth_of_javascript.html" target="_blank">JavaScript &#x8BDE;&#x751F;&#x8BB0;</a>
-</li>
-<li><a href="https://brendaneich.com/2008/04/popularity/" target="_blank">Brendan Eich &#x7684;&#x81EA;&#x8FF0;</a>
-</li>
-<li><a href="http://www.ruanyifeng.com/blog/2015/11/ecmascript-specification.html" target="_blank">ecma &#x89C4;&#x8303;&#x5236;&#x5B9A;</a>
-</li></ul>
-<h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201709-runtime">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201709-runtime</h2><ul><li><a href="http://blog.csdn.net/celte/article/details/39412683" target="_blank">&#x7406;&#x89E3; JavaScript &#x7684;&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E0E;&#x8FD0;&#x884C;&#x673A;&#x5236;</a>
-</li>
-<li><a href="http://www.iteye.com/news/30731" target="_blank">JavaScript&#x7684;&#x8BED;&#x6CD5;&#x89E3;&#x6790;&#x4E0E;&#x62BD;&#x8C61;&#x8BED;&#x6CD5;&#x6811;</a>
-</li>
-<li><a href="http://www.cnblogs.com/gdutbean/archive/2012/02/21/2362003.html" target="_blank">JavaScript &#x6709;&#x54EA;&#x4E9B;&#x5F15;&#x64CE;</a>
-</li>
-<li><a href="https://my.oschina.net/sub/blog/152628" target="_blank">V8 Design Elements</a>
-</li>
-<li><a href="http://huziketang.com/blog/posts/detail?postId=58c12f36a6d8a07e449fdd22" target="_blank">JavaScript Just-in-time (JIT) &#x5DE5;&#x4F5C;&#x539F;&#x7406;</a>
-</li>
-<li><a href="http://www.cnblogs.com/hyddd/archive/2013/02/06/2908110.html" target="_blank">JS&#x7279;&#x6027;&#x6027;&#x80FD;&#x7F3A;&#x9677;&#x53CA;JIT&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;</a>
-</li></ul>
-<h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-eventloop">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-eventloop</h2><ul><li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank">&#x518D;&#x8C08;Event Loop</a>
-</li>
-<li><a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/" target="_blank">Event Loop Design</a>
-</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank">JavaScript &#x4E2D;&#x7684;&#x5B9E;&#x73B0;</a>
-</li></ul>
-<h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-gc">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-gc</h2><ul><li><a href="http://www.jb51.net/article/75292.htm" target="_blank">&#x8DDF;&#x6211;&#x5B66;&#x4E60; javascript &#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x4E0E;&#x5185;&#x5B58;&#x7BA1;&#x7406;</a>
-</li>
-<li><a href="http://blog.csdn.net/lihuifeng/article/details/51984442" target="_blank">Node.js &#x8C03;&#x8BD5; GC &#x4EE5;&#x53CA;&#x5185;&#x5B58;&#x66B4;&#x6DA8;&#x7684;&#x5206;&#x6790;</a>
-</li>
-<li><a href="http://blog.csdn.net/cplusplus_zk/article/details/4899194" target="_blank">COM &#x5E38;&#x89C1;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x53CA;&#x89E3;&#x51B3;</a>
-</li>
-<li><a href="http://blog.csdn.net/hgl868/article/details/45095153" target="_blank">V8 &#x5F15;&#x64CE;&#x8BBE;&#x8BA1;</a>
-</li></ul>
+                                <h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201709-origin">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201709-origin</h2>
+<ul>
+<li><a href="http://www.cnblogs.com/xiaoyang002/p/4137975.html" target="_blank">&#x5173;&#x4E8E;JavaScript&#x8BDE;&#x751F;&#x4E4B;&#x521D;&#x7684;&#x8DA3;&#x4E8B;</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2011/06/birth_of_javascript.html" target="_blank">JavaScript &#x8BDE;&#x751F;&#x8BB0;</a></li>
+<li><a href="https://brendaneich.com/2008/04/popularity/" target="_blank">Brendan Eich &#x7684;&#x81EA;&#x8FF0;</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/11/ecmascript-specification.html" target="_blank">ecma &#x89C4;&#x8303;&#x5236;&#x5B9A;</a></li>
+</ul>
+<h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201709-runtime">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201709-runtime</h2>
+<ul>
+<li><a href="http://blog.csdn.net/celte/article/details/39412683" target="_blank">&#x7406;&#x89E3; JavaScript &#x7684;&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E0E;&#x8FD0;&#x884C;&#x673A;&#x5236;</a></li>
+<li><a href="http://www.iteye.com/news/30731" target="_blank">JavaScript&#x7684;&#x8BED;&#x6CD5;&#x89E3;&#x6790;&#x4E0E;&#x62BD;&#x8C61;&#x8BED;&#x6CD5;&#x6811;</a></li>
+<li><a href="http://www.cnblogs.com/gdutbean/archive/2012/02/21/2362003.html" target="_blank">JavaScript &#x6709;&#x54EA;&#x4E9B;&#x5F15;&#x64CE;</a></li>
+<li><a href="https://my.oschina.net/sub/blog/152628" target="_blank">V8 Design Elements</a></li>
+<li><a href="http://huziketang.com/blog/posts/detail?postId=58c12f36a6d8a07e449fdd22" target="_blank">JavaScript Just-in-time (JIT) &#x5DE5;&#x4F5C;&#x539F;&#x7406;</a></li>
+<li><a href="http://www.cnblogs.com/hyddd/archive/2013/02/06/2908110.html" target="_blank">JS&#x7279;&#x6027;&#x6027;&#x80FD;&#x7F3A;&#x9677;&#x53CA;JIT&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;</a></li>
+</ul>
+<h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-eventloop">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-eventloop</h2>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html" target="_blank">&#x518D;&#x8C08;Event Loop</a></li>
+<li><a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/" target="_blank">Event Loop Design</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank">JavaScript &#x4E2D;&#x7684;&#x5B9E;&#x73B0;</a></li>
+</ul>
+<h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-gc">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-gc</h2>
+<ul>
+<li><a href="http://www.jb51.net/article/75292.htm" target="_blank">&#x8DDF;&#x6211;&#x5B66;&#x4E60; javascript &#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x4E0E;&#x5185;&#x5B58;&#x7BA1;&#x7406;</a></li>
+<li><a href="http://blog.csdn.net/lihuifeng/article/details/51984442" target="_blank">Node.js &#x8C03;&#x8BD5; GC &#x4EE5;&#x53CA;&#x5185;&#x5B58;&#x66B4;&#x6DA8;&#x7684;&#x5206;&#x6790;</a></li>
+<li><a href="http://blog.csdn.net/cplusplus_zk/article/details/4899194" target="_blank">COM &#x5E38;&#x89C1;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x53CA;&#x89E3;&#x51B3;</a></li>
+<li><a href="http://blog.csdn.net/hgl868/article/details/45095153" target="_blank">V8 &#x5F15;&#x64CE;&#x8BBE;&#x8BA1;</a></li>
+</ul>
+<h2 id="&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-function">&#x53C2;&#x8003;&#x6587;&#x7AE0;-201710-function</h2>
+<ul>
+<li><a href="http://www.jb51.net/article/80109.htm" target="_blank">JS&#x539F;&#x578B;&#x3001;&#x539F;&#x578B;&#x94FE;&#x6DF1;&#x5165;&#x7406;&#x89E3;</a></li>
+</ul>
 
                                 
                                 </section>
@@ -294,7 +306,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"GLOSSARY.md","mtime":"2017-10-22T06:52:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-10-22T06:52:11.029Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex","livereload"],"pluginsConfig":{"katex":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"GLOSSARY.md","mtime":"2017-10-24T10:58:01.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-24T06:13:05.664Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -302,6 +314,10 @@
         
     <script src="gitbook/gitbook.js"></script>
     <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>

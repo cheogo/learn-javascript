@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>JavaScript 高阶函数 · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>递归、闭包、原型、继承 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -60,6 +60,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
+    
+    <link rel="next" href="funtion2.html" />
     
     
     <link rel="prev" href="gc.html" />
@@ -174,7 +176,20 @@
                 <a href="funtion.html">
             
                     
-                    JavaScript 高阶函数
+                    递归、闭包、原型、继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="funtion2.html">
+            
+                <a href="funtion2.html">
+            
+                    
+                    高阶函数、curry、函数式
             
                 </a>
             
@@ -212,7 +227,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >JavaScript 高阶函数</a>
+        <a href=".." >递归、闭包、原型、继承</a>
     </h1>
 </div>
 
@@ -227,7 +242,96 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="javascript-&#x9AD8;&#x9636;&#x51FD;&#x6570;">JavaScript &#x9AD8;&#x9636;&#x51FD;&#x6570;</h1><p>// TODO</p><hr><p>&#x4F5C;&#x8005;&#xFF1A;&#x8096;&#x6C90;&#x5BB8;&#xFF0C;<a href="https://github.com/cheogo/learn-javascript" target="_blank">github</a>&#x3002;</p>
+                                <h1 id="&#x9012;&#x5F52;&#x3001;&#x95ED;&#x5305;&#x3001;&#x539F;&#x578B;&#x3001;&#x7EE7;&#x627F;">&#x9012;&#x5F52;&#x3001;&#x95ED;&#x5305;&#x3001;&#x539F;&#x578B;&#x3001;&#x7EE7;&#x627F;</h1>
+<p>&#x672C;&#x6587;&#x4E3A;&#x9AD8;&#x9636;&#x51FD;&#x6570;&#x4E00;&#x7AE0;&#x505A;&#x94FA;&#x57AB;&#xFF0C;&#x4E3B;&#x8981;&#x8BB2;&#x89E3;&#xFF1A;&#x9012;&#x5F52;&#x3001;&#x95ED;&#x5305;&#x662F;&#x4EC0;&#x4E48;&#x3001;&#x95ED;&#x5305;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x3001;&#x4EC0;&#x4E48;&#x662F;&#x539F;&#x578B;&#x548C;&#x539F;&#x578B;&#x94FE;&#x3001;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7EE7;&#x627F;&#x3001;&#x7EE7;&#x627F;&#x7684;&#x539F;&#x7406;&#xFF0C;&#x5982;&#x679C;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E9B;&#x51FD;&#x6570;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;&#x5DF2;&#x7ECF;&#x638C;&#x63E1;&#xFF0C;&#x53EF;&#x4EE5;&#x8DF3;&#x8FC7;&#x3002;</p>
+<h4 id="&#x9012;&#x5F52;">&#x9012;&#x5F52;</h4>
+<p>&#x51FD;&#x6570;&#x7684;&#x9012;&#x5F52;&#x5C31;&#x662F;&#x5728;&#x51FD;&#x6570;&#x4E2D;&#x8C03;&#x7528;&#x81EA;&#x8EAB;</p>
+<p>&#x4E3E;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;&#x8457;&#x540D;&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x6570;&#x5217;&#x5982;&#x4F55;&#x6C42;&#x5F97;&#xFF0C;&#x95EE;&#x9898;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<ol>
+<li>&#x7B2C;&#x4E00;&#x4E2A;&#x6708;&#x521D;&#x6709;&#x4E00;&#x5BF9;&#x521A;&#x8BDE;&#x751F;&#x7684;&#x5154;&#x5B50;</li>
+<li>&#x7B2C;&#x4E8C;&#x4E2A;&#x6708;&#x4E4B;&#x540E;&#xFF08;&#x7B2C;&#x4E09;&#x4E2A;&#x6708;&#x521D;&#xFF09;&#x5B83;&#x4EEC;&#x53EF;&#x4EE5;&#x751F;&#x80B2;</li>
+<li>&#x6BCF;&#x6708;&#x6BCF;&#x5BF9;&#x53EF;&#x751F;&#x80B2;&#x7684;&#x5154;&#x5B50;&#x4F1A;&#x8BDE;&#x751F;&#x4E0B;&#x4E00;&#x5BF9;&#x65B0;&#x5154;&#x5B50;</li>
+<li>&#x5154;&#x5B50;&#x6C38;&#x4E0D;&#x6B7B;&#x53BB;</li>
+</ol>
+<p>&#x5B9A;&#x4E49;&#x51FA;&#x6765;&#x7684;&#x6570;&#x5217;&#x662F;</p>
+<p><img src="../assets/2017_10_01.jpg" alt=""></p>
+<p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6C42;&#x5F97; n &#x6708;&#x6709;&#x591A;&#x5C11;&#x5BF9;&#x5154;&#x5B50;&#xFF0C;&#x901A;&#x8FC7;&#x9012;&#x5F52;&#x7B97;&#x6CD5;&#x53EF;&#x4EE5;&#x6C42;&#x5F97;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">n</span>) </span>{
+  <span class="hljs-keyword">return</span> n &lt; <span class="hljs-number">2</span> ? <span class="hljs-number">1</span> : fn(n - <span class="hljs-number">1</span>) + fn(n - <span class="hljs-number">2</span>)
+}
+<span class="hljs-keyword">var</span> count = fn(<span class="hljs-number">30</span>);
+<span class="hljs-built_in">console</span>.log(count);
+</code></pre>
+<h4 id="&#x95ED;&#x5305;">&#x95ED;&#x5305;</h4>
+<p>&#x4EC0;&#x4E48;&#x662F;&#x95ED;&#x5305;&#xFF1F;&#x95ED;&#x5305;&#x5C31;&#x662F;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x7EE7;&#x627F;&#x5E76;&#x8BBF;&#x95EE;&#x81EA;&#x8EAB;&#x6240;&#x88AB;&#x58F0;&#x660E;&#x7684;&#x51FD;&#x6570;&#x4F5C;&#x7528;&#x57DF;&#x5185;&#x7684;&#x53D8;&#x91CF;&#x3002;</p>
+<pre><code class="lang-javaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn1</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> a = <span class="hljs-string">&apos;hello&apos;</span>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn2</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(a)
+  }
+}
+fn1() <span class="hljs-comment">// &#x5176;&#x4E2D; fn2 &#x5C31;&#x662F;&#x95ED;&#x5305;&#x51FD;&#x6570;</span>
+</code></pre>
+<h4 id="&#x95ED;&#x5305;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;">&#x95ED;&#x5305;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;</h4>
+<p>&#x95ED;&#x5305;&#x6709;&#x5F88;&#x591A;&#x4F7F;&#x7528;&#x573A;&#x666F;&#xFF0C;&#x4EE5;&#x4E0B;&#x4E3E;&#x4F8B;&#xFF1A;</p>
+<h6 id="1-&#x79C1;&#x6709;&#x53D8;&#x91CF;">1. &#x79C1;&#x6709;&#x53D8;&#x91CF;</h6>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Person</span>(<span class="hljs-params"></span>)</span>{    
+  <span class="hljs-keyword">var</span> name = <span class="hljs-string">&quot;default&quot;</span>;       
+  <span class="hljs-keyword">return</span> {    
+    getName : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{    
+      <span class="hljs-keyword">return</span> name;    
+    },    
+      setName : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">newName</span>)</span>{    
+      name = newName;    
+    }    
+  }    
+};
+<span class="hljs-keyword">var</span> person = Person()
+<span class="hljs-built_in">console</span>.log(person.getName()) <span class="hljs-comment">// default</span>
+person.setName(<span class="hljs-string">&apos;xiaomuchen&apos;</span>)
+<span class="hljs-built_in">console</span>.log(person.getName()) <span class="hljs-comment">// xiaomuchen</span>
+<span class="hljs-keyword">var</span> person2 = Person()
+<span class="hljs-built_in">console</span>.log(person2.getName()) <span class="hljs-comment">// default</span>
+</code></pre>
+<p>&#x4E0A;&#x8FF0;&#x51FD;&#x6570;&#xFF0C;&#x4F7F;&#x7528;&#x95ED;&#x5305;&#x521B;&#x5EFA;&#x79C1;&#x6709;&#x53D8;&#x91CF; name&#xFF0C;&#x53D8;&#x91CF;&#x4E0D;&#x53EF;&#x88AB;&#x5916;&#x90E8;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x3001;&#x83B7;&#x53D6;&#xFF0C;&#x53EA;&#x80FD;&#x901A;&#x8FC7;&#x8FD4;&#x56DE;&#x7684;&#x63A5;&#x53E3;&#x63A7;&#x5236;&#x3002;</p>
+<h6 id="2-&#x533F;&#x540D;&#x81EA;&#x6267;&#x884C;&#x51FD;&#x6570;">2. &#x533F;&#x540D;&#x81EA;&#x6267;&#x884C;&#x51FD;&#x6570;</h6>
+<p>&#x6BD4;&#x5982;&#x5728;&#x5F00;&#x53D1;&#x9875;&#x9762;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x9875;&#x9762;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x7ACB;&#x5373;&#x505A;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x5728;&#x9875;&#x9762;&#x4E2D;&#x4F7F;&#x7528;<code>&#x533F;&#x540D;&#x81EA;&#x6267;&#x884C;&#x51FD;&#x6570;</code>&#xFF0C;&#x5B83;&#x4F1A;&#x5728; JS &#x5F15;&#x64CE;&#x8BFB;&#x53D6;&#x5230;&#x8FD9;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#x65F6;&#x5C31;&#x7ACB;&#x5373;&#x6267;&#x884C;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &#x5728; title &#x4E0A;&#x6DFB;&#x52A0;&#x9875;&#x9762;&#x6253;&#x5F00;&#x65F6;&#x95F4;</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">var</span> openTime = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()
+  <span class="hljs-built_in">document</span>.title = <span class="hljs-built_in">document</span>.title + openTime
+})();
+</code></pre>
+<h4 id="&#x539F;&#x578B;&#x3001;&#x539F;&#x578B;&#x94FE;&#x3001;&#x7EE7;&#x627F;">&#x539F;&#x578B;&#x3001;&#x539F;&#x578B;&#x94FE;&#x3001;&#x7EE7;&#x627F;</h4>
+<p>javascript &#x51FD;&#x6570;&#x901A;&#x8FC7;&#x539F;&#x578B;&#x548C;&#x539F;&#x578B;&#x94FE;&#x5B9E;&#x73B0;&#x7EE7;&#x627F;&#xFF0C;&#x539F;&#x578B;&#x662F; javaScript &#x51FD;&#x6570;&#x4E0A; prototype &#x5C5E;&#x6027;&#x7684;&#x503C;&#xFF0C;&#x539F;&#x578B;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5305;&#x542B;&#x539F;&#x578B;&#x65B9;&#x6CD5;&#xFF08;&#x5C5E;&#x6027;&#xFF09;&#x3001;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x539F;&#x578B;&#x94FE;&#xFF08;__proto__&#xFF09;&#x3002;</p>
+<p>&#x539F;&#x578B;&#x94FE;&#x6307;&#x5411;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#xFF0C;&#x6BCF;&#x4E2A;&#x5BF9;&#x8C61;&#xFF08;&#x6CE8;&#x610F;&#x662F;&#x5BF9;&#x8C61;&#xFF01;JavaScript &#x7684;&#x51FD;&#x6570;&#x662F;&#x7B2C;&#x4E00;&#x516C;&#x6C11;&#x6240;&#x4EE5;&#x51FD;&#x6570;&#x4E5F;&#x662F;&#x5BF9;&#x8C61;&#xFF09;&#x90FD;&#x6709;__proto__ &#x6307;&#x5411;&#x5176;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;&#x3002;&#x5982;&#x679C;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4F1A;&#x5148;&#x5C1D;&#x8BD5;&#x5728;&#x5BF9;&#x8C61;&#x4E0A;&#x641C;&#x7D22;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x518D;&#x901A;&#x8FC7;&#x539F;&#x578B;&#x94FE;&#x5411;&#x4E0A;&#x67E5;&#x627E;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">superA</span> (<span class="hljs-params">name</span>) </span>{
+  <span class="hljs-keyword">this</span>.name = name
+}
+superA.prototype.getName = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.name)
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">subA</span> (<span class="hljs-params">name</span>) </span>{
+  superA.call(<span class="hljs-keyword">this</span>, name) <span class="hljs-comment">// &#x7EE7;&#x627F;&#x5C5E;&#x6027;</span>
+}
+subA.prototype = <span class="hljs-keyword">new</span> superA() <span class="hljs-comment">// &#x7EE7;&#x627F;&#x65B9;&#x6CD5;</span>
+
+<span class="hljs-keyword">var</span> a1 = <span class="hljs-keyword">new</span> subA(<span class="hljs-string">&apos;xiaomuchen&apos;</span>)
+a1.getName() <span class="hljs-comment">// xiaomuchen</span>
+</code></pre>
+<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#xFF0C;&#x63CF;&#x8FF0;&#x4E86;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x7ECF;&#x5178;&#x7EE7;&#x627F;&#xFF0C;&#x5176;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<ol>
+<li>&#x7EE7;&#x627F; subA.__proto__ =&gt; superA.prototype</li>
+<li>&#x521B;&#x5EFA; var a1 = {}</li>
+<li>&#x4F7F;&#x7528; <code>new</code> &#x5173;&#x952E;&#x5B57;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x628A;&#x539F;&#x578B;&#x94FE;&#x6307;&#x5411;&#x539F;&#x578B; a1.__proto__ =&gt; subA.prototype</li>
+<li>&#x4F7F;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570; subA &#x521D;&#x59CB;&#x5316; a1&#xFF0C;subA.call(a1, &apos;xiaomuchen&apos;) =&gt; superA.call(a1, &apos;xiaomuchen&apos;)&#xFF0C;a1 &#x83B7;&#x5F97;&#x5C5E;&#x6027; name = &apos;xiaomuchen&apos;</li>
+<li>a1 &#x8BBF;&#x95EE; getName &#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x56E0;&#x4E3A;&#x672C;&#x8EAB;&#x6CA1;&#x6709;&#xFF0C;&#x901A;&#x8FC7; a1.__proto__ &#x67E5;&#x627E;&#x5230; subA.prototype&#xFF0C;subA &#x6CA1;&#x6709;&#xFF0C;&#x518D;&#x901A;&#x8FC7; subA.__proto__ &#x627E;&#x5230;&#x539F;&#x578B; superA.prototype &#x4E0A;</li>
+</ol>
+<h4 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h4>
+<p>&#x672C;&#x6587;&#x6982;&#x62EC;&#x4E86;&#x9012;&#x5F52;&#x3001;&#x95ED;&#x5305;&#x3001;&#x539F;&#x578B;&#x3001;&#x7EE7;&#x627F;&#xFF0C;&#x7406;&#x6E05;&#x8FD9;&#x4E9B;&#x57FA;&#x672C;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x6709;&#x52A9;&#x4E8E;&#x4F60;&#x5BB9;&#x6613;&#x63A5;&#x7EB3;&#x66F4;&#x591A;&#x7684;&#x4E1C;&#x897F;&#x3002;</p>
+<hr>
+<p>&#x4F5C;&#x8005;&#xFF1A;&#x8096;&#x6C90;&#x5BB8;&#xFF0C;<a href="https://github.com/cheogo/learn-javascript" target="_blank">github</a>&#x3002;</p>
+
                                 
                                 </section>
                             
@@ -254,10 +358,14 @@
 
             
                 
-                <a href="gc.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: JavaScript 内存管理">
+                <a href="gc.html" class="navigation navigation-prev " aria-label="Previous page: JavaScript 内存管理">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="funtion2.html" class="navigation navigation-next " aria-label="Next page: 高阶函数、curry、函数式">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -266,7 +374,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"JavaScript 高阶函数","level":"1.7","depth":1,"previous":{"title":"JavaScript 内存管理","level":"1.6","depth":1,"path":"201710/gc.md","ref":"201710/gc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201710/funtion.md","mtime":"2017-10-17T12:30:50.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-10-22T06:52:11.029Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"递归、闭包、原型、继承","level":"1.7","depth":1,"next":{"title":"高阶函数、curry、函数式","level":"1.8","depth":1,"path":"201710/funtion2.md","ref":"201710/funtion2.md","articles":[]},"previous":{"title":"JavaScript 内存管理","level":"1.6","depth":1,"path":"201710/gc.md","ref":"201710/gc.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex","livereload"],"pluginsConfig":{"katex":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201710/funtion.md","mtime":"2017-10-24T11:18:10.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-24T06:13:05.664Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -274,6 +382,10 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

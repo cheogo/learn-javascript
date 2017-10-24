@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>JavaScript 内存管理 · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>JavaScript 内存管理 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -176,7 +176,20 @@
                 <a href="funtion.html">
             
                     
-                    JavaScript 高阶函数
+                    递归、闭包、原型、继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="funtion2.html">
+            
+                <a href="funtion2.html">
+            
+                    
+                    高阶函数、curry、函数式
             
                 </a>
             
@@ -229,7 +242,10 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="javascript-&#x5185;&#x5B58;&#x7BA1;&#x7406;">JavaScript &#x5185;&#x5B58;&#x7BA1;&#x7406;</h1><p>JavaScript &#x5177;&#x6709;&#x5783;&#x573E;&#x81EA;&#x52A8;&#x56DE;&#x6536;&#x673A;&#x5236;&#xFF08;Garbage Collection&#xFF09;&#x7B80;&#x79F0; GC&#x3002;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x4F1A;&#x4E2D;&#x65AD;&#x6574;&#x4E2A;&#x4EE3;&#x7801;&#x6267;&#x884C;&#xFF0C;&#x91CA;&#x653E;&#x4E0D;&#x518D;&#x53EF;&#x80FD;&#x88AB;&#x4F7F;&#x7528;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x91CA;&#x653E;&#x5185;&#x5B58;&#xFF0C;&#x8FD9;&#x4E2A;&#x5DE5;&#x4F5C;&#x673A;&#x5236;&#x662F;&#x5468;&#x671F;&#x6027;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5728;&#x4E0B;&#x6587;&#x8BE6;&#x7EC6;&#x63A2;&#x8BA8;&#x3002;</p><h4 id="&#x53EF;&#x91CA;&#x653E;&#x5BF9;&#x8C61;">&#x53EF;&#x91CA;&#x653E;&#x5BF9;&#x8C61;</h4><pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn1</span>(<span class="hljs-params"></span>) </span>{
+                                <h1 id="javascript-&#x5185;&#x5B58;&#x7BA1;&#x7406;">JavaScript &#x5185;&#x5B58;&#x7BA1;&#x7406;</h1>
+<p>JavaScript &#x5177;&#x6709;&#x5783;&#x573E;&#x81EA;&#x52A8;&#x56DE;&#x6536;&#x673A;&#x5236;&#xFF08;Garbage Collection&#xFF09;&#x7B80;&#x79F0; GC&#x3002;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x4F1A;&#x4E2D;&#x65AD;&#x6574;&#x4E2A;&#x4EE3;&#x7801;&#x6267;&#x884C;&#xFF0C;&#x91CA;&#x653E;&#x4E0D;&#x518D;&#x53EF;&#x80FD;&#x88AB;&#x4F7F;&#x7528;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x91CA;&#x653E;&#x5185;&#x5B58;&#xFF0C;&#x8FD9;&#x4E2A;&#x5DE5;&#x4F5C;&#x673A;&#x5236;&#x662F;&#x5468;&#x671F;&#x6027;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x4F1A;&#x5728;&#x4E0B;&#x6587;&#x8BE6;&#x7EC6;&#x63A2;&#x8BA8;&#x3002;</p>
+<h4 id="&#x53EF;&#x91CA;&#x653E;&#x5BF9;&#x8C61;">&#x53EF;&#x91CA;&#x653E;&#x5BF9;&#x8C61;</h4>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn1</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">var</span> obj1 = { name: <span class="hljs-string">&apos;xiaomuchen&apos;</span>, age: <span class="hljs-string">&apos;20&apos;</span> }
 }
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn2</span>(<span class="hljs-params"></span>) </span>{
@@ -238,27 +254,45 @@
 }
 <span class="hljs-keyword">var</span> a = fn1()
 <span class="hljs-keyword">var</span> b = fn2()
-<span class="hljs-built_in">console</span>.log(a, b) <span class="hljs-comment">// undefined, {name: &quot;xiaomuchen&quot;, age: &quot;20&quot;}</span></code></pre>
-<p>&#x6211;&#x4EEC;&#x5BF9;&#x6BD4;&#x4E0A;&#x9762;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;fn1 &#x5728;&#x51FD;&#x6570;&#x5185;&#x58F0;&#x660E;&#x53D8;&#x91CF; obj1 &#x5E76;&#x4E14;&#x8D4B;&#x503C;&#xFF0C;&#x5728;&#x51FD;&#x6570;&#x6267;&#x884C;&#x540E;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;<code>&#x4FBF;&#x4E0D;&#x53EF;&#x518D;&#x8BBF;&#x95EE;&#x4E86;</code>&#xFF0C;fn2 &#x5728;&#x6700;&#x540E;&#x628A;&#x51FD;&#x6570;&#x5185;&#x7684;&#x53D8;&#x91CF; obj2 &#x8FD4;&#x56DE;&#x5230;&#x5168;&#x5C40;&#x53D8;&#x91CF; b&#xFF0C;&#x6240;&#x4EE5; <code>{ name: &apos;xiaomuchen&apos;, age: &apos;20&apos; }</code> &#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#xFF08;&#x6216;&#x8005;&#x8BF4; obj2&#xFF09;<code>&#x4F9D;&#x7136;&#x53EF;&#x88AB;&#x8BBF;&#x95EE;</code>&#x3002;</p><p>JavaScript &#x56DE;&#x6536;&#x673A;&#x5236;&#x901A;&#x8FC7;&#x5224;&#x65AD;&#x53D8;&#x91CF;&#x662F;&#x5426;&#x53EF;&#x88AB;&#x8BBF;&#x95EE;&#xFF0C;&#x6765;&#x51B3;&#x5B9A;&#x56DE;&#x6536;&#x54EA;&#x4E9B;&#x53D8;&#x91CF;&#x3002;</p><h4 id="&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x548C;&#x5F15;&#x7528;&#x8BA1;&#x6570;">&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x548C;&#x5F15;&#x7528;&#x8BA1;&#x6570;</h4><p>&#x90A3;&#x4E48; JavaScript &#x662F;&#x5982;&#x4F55;&#x5224;&#x65AD;&#x53D8;&#x91CF;&#x662F;&#x5426;&#x53EF;&#x88AB;&#x8BBF;&#x95EE;&#xFF1F;&#x8FD9;&#x5C31;&#x8981;&#x63D0;&#x5230;&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x548C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x3002;</p><p>&#x6807;&#x8BB0;&#x6E05;&#x9664;&#xFF1A;&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x662F;&#x76EE;&#x524D;&#x5927;&#x90E8;&#x5206; JavaScript &#x5F15;&#x64CE;&#x4F7F;&#x7528;&#x7684;&#x5224;&#x65AD;&#x65B9;&#x5F0F;&#xFF0C;&#x901A;&#x8FC7;&#x6807;&#x8BB0;&#x53D8;&#x91CF;&#x7684;&#x72B6;&#x6001;&#x6765;&#x786E;&#x5B9A;&#x662F;&#x5426;&#x53EF;&#x88AB;&#x56DE;&#x6536;&#x3002;&#x5F53;&#x53D8;&#x91CF;&#x5728;&#x73AF;&#x5883;&#x4E2D;&#x88AB;&#x58F0;&#x660E;&#x65F6;&#x6807;&#x8BB0;<code>&#x8FDB;&#x5165;&#x73AF;&#x5883;</code>&#xFF0C;&#x7406;&#x8BBA;&#x4E0A;&#x6C38;&#x8FDC;&#x4E0D;&#x8981;&#x91CA;&#x653E;&#x8FDB;&#x5165;&#x73AF;&#x5883;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EF;&#x4EE5;&#x5728;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x4EFB;&#x4F55;&#x4F4D;&#x7F6E;&#x3001;&#x4EFB;&#x4F55;&#x65F6;&#x523B;&#x88AB;&#x8BBF;&#x95EE;&#x3002;&#x5F53;&#x73AF;&#x5883;&#x88AB;&#x9500;&#x6BC1;&#xFF08;&#x5982;&#x51FD;&#x6570;&#x6267;&#x884C;&#x5B8C;&#xFF09;&#xFF0C;&#x5219;&#x53D8;&#x91CF;&#x88AB;&#x6807;&#x8BB0;<code>&#x79BB;&#x5F00;&#x73AF;&#x5883;</code>&#x7B49;&#x5F85;&#x56DE;&#x6536;&#x3002;</p><pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
+<span class="hljs-built_in">console</span>.log(a, b) <span class="hljs-comment">// undefined, {name: &quot;xiaomuchen&quot;, age: &quot;20&quot;}</span>
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x5BF9;&#x6BD4;&#x4E0A;&#x9762;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;fn1 &#x5728;&#x51FD;&#x6570;&#x5185;&#x58F0;&#x660E;&#x53D8;&#x91CF; obj1 &#x5E76;&#x4E14;&#x8D4B;&#x503C;&#xFF0C;&#x5728;&#x51FD;&#x6570;&#x6267;&#x884C;&#x540E;&#x8FD9;&#x4E2A;&#x53D8;&#x91CF;<code>&#x4FBF;&#x4E0D;&#x53EF;&#x518D;&#x8BBF;&#x95EE;&#x4E86;</code>&#xFF0C;fn2 &#x5728;&#x6700;&#x540E;&#x628A;&#x51FD;&#x6570;&#x5185;&#x7684;&#x53D8;&#x91CF; obj2 &#x8FD4;&#x56DE;&#x5230;&#x5168;&#x5C40;&#x53D8;&#x91CF; b&#xFF0C;&#x6240;&#x4EE5; <code>{ name: &apos;xiaomuchen&apos;, age: &apos;20&apos; }</code> &#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#xFF08;&#x6216;&#x8005;&#x8BF4; obj2&#xFF09;<code>&#x4F9D;&#x7136;&#x53EF;&#x88AB;&#x8BBF;&#x95EE;</code>&#x3002;</p>
+<p>JavaScript &#x56DE;&#x6536;&#x673A;&#x5236;&#x901A;&#x8FC7;&#x5224;&#x65AD;&#x53D8;&#x91CF;&#x662F;&#x5426;&#x53EF;&#x88AB;&#x8BBF;&#x95EE;&#xFF0C;&#x6765;&#x51B3;&#x5B9A;&#x56DE;&#x6536;&#x54EA;&#x4E9B;&#x53D8;&#x91CF;&#x3002;</p>
+<h4 id="&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x548C;&#x5F15;&#x7528;&#x8BA1;&#x6570;">&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x548C;&#x5F15;&#x7528;&#x8BA1;&#x6570;</h4>
+<p>&#x90A3;&#x4E48; JavaScript &#x662F;&#x5982;&#x4F55;&#x5224;&#x65AD;&#x53D8;&#x91CF;&#x662F;&#x5426;&#x53EF;&#x88AB;&#x8BBF;&#x95EE;&#xFF1F;&#x8FD9;&#x5C31;&#x8981;&#x63D0;&#x5230;&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x548C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x3002;</p>
+<p>&#x6807;&#x8BB0;&#x6E05;&#x9664;&#xFF1A;&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x662F;&#x76EE;&#x524D;&#x5927;&#x90E8;&#x5206; JavaScript &#x5F15;&#x64CE;&#x4F7F;&#x7528;&#x7684;&#x5224;&#x65AD;&#x65B9;&#x5F0F;&#xFF0C;&#x901A;&#x8FC7;&#x6807;&#x8BB0;&#x53D8;&#x91CF;&#x7684;&#x72B6;&#x6001;&#x6765;&#x786E;&#x5B9A;&#x662F;&#x5426;&#x53EF;&#x88AB;&#x56DE;&#x6536;&#x3002;&#x5F53;&#x53D8;&#x91CF;&#x5728;&#x73AF;&#x5883;&#x4E2D;&#x88AB;&#x58F0;&#x660E;&#x65F6;&#x6807;&#x8BB0;<code>&#x8FDB;&#x5165;&#x73AF;&#x5883;</code>&#xFF0C;&#x7406;&#x8BBA;&#x4E0A;&#x6C38;&#x8FDC;&#x4E0D;&#x8981;&#x91CA;&#x653E;&#x8FDB;&#x5165;&#x73AF;&#x5883;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EF;&#x4EE5;&#x5728;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x4EFB;&#x4F55;&#x4F4D;&#x7F6E;&#x3001;&#x4EFB;&#x4F55;&#x65F6;&#x523B;&#x88AB;&#x8BBF;&#x95EE;&#x3002;&#x5F53;&#x73AF;&#x5883;&#x88AB;&#x9500;&#x6BC1;&#xFF08;&#x5982;&#x51FD;&#x6570;&#x6267;&#x884C;&#x5B8C;&#xFF09;&#xFF0C;&#x5219;&#x53D8;&#x91CF;&#x88AB;&#x6807;&#x8BB0;<code>&#x79BB;&#x5F00;&#x73AF;&#x5883;</code>&#x7B49;&#x5F85;&#x56DE;&#x6536;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">var</span> a = { count: <span class="hljs-number">10</span> } <span class="hljs-comment">// &#x88AB;&#x6807;&#x8BB0;&#xFF0C;&#x8FDB;&#x5165;&#x73AF;&#x5883; </span>
   <span class="hljs-keyword">var</span> b = { count: <span class="hljs-number">20</span> } <span class="hljs-comment">// &#x88AB;&#x6807;&#x8BB0;&#xFF0C;&#x8FDB;&#x5165;&#x73AF;&#x5883;</span>
 }
-fn(); <span class="hljs-comment">// &#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E; b &#x88AB;&#x6807;&#x8BB0;&#xFF0C;&#x79BB;&#x5F00;&#x73AF;&#x5883;</span></code></pre>
+fn(); <span class="hljs-comment">// &#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x4E4B;&#x540E; b &#x88AB;&#x6807;&#x8BB0;&#xFF0C;&#x79BB;&#x5F00;&#x73AF;&#x5883;</span>
+</code></pre>
 <p>&#x5F15;&#x7528;&#x8BA1;&#x6570;&#xFF1A;JavaScript &#x5F15;&#x64CE;&#x7EF4;&#x62A4;&#x4E00;&#x5F20;<code>&#x5F15;&#x7528;&#x8868;</code>&#xFF0C;&#x4FDD;&#x5B58;&#x5185;&#x5B58;&#x4E2D;&#x6240;&#x6709;&#x7684;&#x8D44;&#x6E90;&#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x3002;&#x8D44;&#x6E90;&#x88AB;&#x5F15;&#x7528;&#x4E00;&#x6B21;&#x5219;&#x5F15;&#x7528; +1&#xFF0C;&#x8D44;&#x6E90;&#x88AB;&#x53BB;&#x6389;&#x5F15;&#x7528;&#x6216;&#x8005;&#x9000;&#x51FA;&#x53D8;&#x91CF;&#x7684;&#x51FD;&#x6570;&#x4F5C;&#x7528;&#x57DF;&#x65F6;&#xFF0C;&#x5219;&#x5F15;&#x7528; -1&#xFF0C;&#x5F53;&#x8D44;&#x6E90;&#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A;<code>0</code>&#x65F6;&#xFF0C;&#x8BF4;&#x660E;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x8FD9;&#x4E2A;&#x503C;&#xFF0C;&#x5219;&#x7B49;&#x5F85;&#x56DE;&#x6536;&#x3002;
-&#xFF08;&#x6CE8;&#xFF1A;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4ECE; 1 &#x5230; 0 &#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x53EF;&#x80FD;&#x4E0D;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x6807;&#x8BB0;<code>&#x53EF;&#x88AB;&#x56DE;&#x6536;</code>&#xFF0C;&#x4E0D;&#x518D;&#x8FDB;&#x884C;&#x52A0;&#x51CF;&#x8FD0;&#x7B97;&#x8282;&#x7EA6;&#x5F00;&#x9500;&#xFF09;</p><pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
+&#xFF08;&#x6CE8;&#xFF1A;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x4ECE; 1 &#x5230; 0 &#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x53EF;&#x80FD;&#x4E0D;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x662F;&#x76F4;&#x63A5;&#x6807;&#x8BB0;<code>&#x53EF;&#x88AB;&#x56DE;&#x6536;</code>&#xFF0C;&#x4E0D;&#x518D;&#x8FDB;&#x884C;&#x52A0;&#x51CF;&#x8FD0;&#x7B97;&#x8282;&#x7EA6;&#x5F00;&#x9500;&#xFF09;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">var</span> a = { count: <span class="hljs-number">10</span> } <span class="hljs-comment">// &#x8D44;&#x6E90; { count: 10 } &#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 1</span>
   a = { count: <span class="hljs-number">20</span> } <span class="hljs-comment">// &#x8D44;&#x6E90; { count: 20 } &#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 1&#xFF0C;&#x8D44;&#x6E90; { count: 10 } &#x88AB;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 0&#xFF0C;&#x7B49;&#x5F85;&#x56DE;&#x6536;</span>
   <span class="hljs-comment">// do someThing</span>
 }
-fn(); <span class="hljs-comment">// &#x8D44;&#x6E90; { count: 20 } &#x88AB;&#x91CA;&#x653E;</span></code></pre>
-<p>&#x4F46;&#x662F;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5B58;&#x5728;&#x4E00;&#x79CD;<code>&#x5FAA;&#x73AF;&#x5F15;&#x7528;</code>&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x4E0B;&#x4F8B;&#x5B50;&#xFF0C;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x5F15;&#x7528;&#xFF0C;&#x5728;&#x79BB;&#x5F00;&#x73AF;&#x5883;&#x540E;&#x5BF9;&#x8C61;&#x4E0D;&#x53EF;&#x8BBF;&#x95EE;&#xFF0C;&#x4F46;&#x7531;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 1&#xFF0C;&#x5219;&#x5BFC;&#x81F4;&#x4E0D;&#x4F1A;&#x88AB;&#x56DE;&#x6536;&#x3002;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x6765;&#x81EA;&#x300A;JavaScript &#x9AD8;&#x7EA7;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x300B;&#xFF0C;&#x4F46;&#x6211;&#x601D;&#x8003;&#x826F;&#x4E45;&#xFF0C;&#x5982;&#x679C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x628A; a.param &#x4E5F;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x6765;&#x8BA1;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x5F0F;&#x4E0D;&#x540C;&#xFF0C;&#x4EA7;&#x751F;&#x7684;&#x7ED3;&#x679C;&#x4E5F;&#x4E0D;&#x4E00;&#x6837;&#x3002;</p><pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
+fn(); <span class="hljs-comment">// &#x8D44;&#x6E90; { count: 20 } &#x88AB;&#x91CA;&#x653E;</span>
+</code></pre>
+<p>&#x4F46;&#x662F;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5B58;&#x5728;&#x4E00;&#x79CD;<code>&#x5FAA;&#x73AF;&#x5F15;&#x7528;</code>&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5982;&#x4E0B;&#x4F8B;&#x5B50;&#xFF0C;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x5F15;&#x7528;&#xFF0C;&#x5728;&#x79BB;&#x5F00;&#x73AF;&#x5883;&#x540E;&#x5BF9;&#x8C61;&#x4E0D;&#x53EF;&#x8BBF;&#x95EE;&#xFF0C;&#x4F46;&#x7531;&#x4E8E;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 1&#xFF0C;&#x5219;&#x5BFC;&#x81F4;&#x4E0D;&#x4F1A;&#x88AB;&#x56DE;&#x6536;&#x3002;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x6765;&#x81EA;&#x300A;JavaScript &#x9AD8;&#x7EA7;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x300B;&#xFF0C;&#x4F46;&#x6211;&#x601D;&#x8003;&#x826F;&#x4E45;&#xFF0C;&#x5982;&#x679C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x628A; a.param &#x4E5F;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#x6765;&#x8BA1;&#x6570;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5B9E;&#x73B0;&#x7684;&#x65B9;&#x5F0F;&#x4E0D;&#x540C;&#xFF0C;&#x4EA7;&#x751F;&#x7684;&#x7ED3;&#x679C;&#x4E5F;&#x4E0D;&#x4E00;&#x6837;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">var</span> a = { count: <span class="hljs-number">10</span> }
   <span class="hljs-keyword">var</span> b = { count: <span class="hljs-number">20</span> }
   a.param = b <span class="hljs-comment">// b &#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 2</span>
   b.param = a <span class="hljs-comment">// a &#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 2</span>
 }
-fn(); <span class="hljs-comment">// a&#x3001;b &#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 1</span></code></pre>
-<h4 id="gc-&#x7684;&#x7F3A;&#x9677;&#x3001;&#x5206;&#x4EE3;&#x56DE;&#x6536;&#x548C;&#x589E;&#x91CF;-gc">GC &#x7684;&#x7F3A;&#x9677;&#x3001;&#x5206;&#x4EE3;&#x56DE;&#x6536;&#x548C;&#x589E;&#x91CF; GC</h4><p>&#x548C;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E00;&#x6837; GC &#x4F1A;&#x4E2D;&#x65AD;&#x4EE3;&#x7801;&#x6267;&#x884C;&#xFF0C;&#x505C;&#x6B62;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;&#x3002;&#x56E0;&#x4E3A;&#x8981;&#x904D;&#x5386;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#xFF0C;&#x56DE;&#x6536;&#x6240;&#x6709;&#x4E0D;&#x53EF;&#x8BBF;&#x95EE;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x7684;&#x8017;&#x65F6;&#x53EF;&#x80FD;&#x6709; 100ms &#x4EE5;&#x4E0A;&#x3002;&#x5728; V8 &#x5F15;&#x64CE;&#x65B0;&#x7248;&#x672C;&#x4E2D;&#x5F15;&#x5165;&#x4E86;&#x4E24;&#x79CD;&#x4F18;&#x5316;&#x65B9;&#x6CD5;&#xFF1A;1. &#x5206;&#x4EE3;&#x56DE;&#x6536;&#xFF08;Generation GC&#xFF09;&#xFF0C;2. &#x589E;&#x91CF; GC&#xFF08;increment GC&#xFF09;</p><p>&#x5206;&#x4EE3;&#x56DE;&#x6536;&#xFF1A;&#x76EE;&#x7684;&#x662F;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x7684;&#x4F7F;&#x7528;&#x9891;&#x7387;&#x3001;&#x5B58;&#x5728;&#x65F6;&#x957F;&#x533A;&#x5206;&#x65B0;&#x751F;&#x4EE3;&#x4E0E;&#x8001;&#x751F;&#x4EE3;&#x5BF9;&#x8C61;&#x3002;&#x591A;&#x56DE;&#x6536;&#x65B0;&#x751F;&#x4EE3;&#x533A;&#xFF08;young generation&#xFF09;&#xFF0C;&#x5C11;&#x56DE;&#x6536;&#x8001;&#x751F;&#x4EE3;&#x533A;&#xFF08;tenured generation&#xFF09;&#xFF0C;&#x51CF;&#x5C11;&#x6BCF;&#x6B21;&#x9700;&#x904D;&#x5386;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4ECE;&#x800C;&#x51CF;&#x5C11;&#x6BCF;&#x6B21;GC&#x7684;&#x8017;&#x65F6;</p><p>&#x589E;&#x91CF; GC&#xFF1A;&#x628A;&#x9700;&#x8981;&#x957F;&#x8017;&#x65F6;&#x7684;&#x904D;&#x5386;&#x3001;&#x56DE;&#x6536;&#x64CD;&#x4F5C;<code>&#x62C6;&#x5206;&#x8FD0;&#x884C;</code>&#xFF0C;&#x51CF;&#x5C11;&#x4E2D;&#x65AD;&#x65F6;&#x95F4;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x589E;&#x5927;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x5F00;&#x9500;</p><h4 id="nodejs-&#x4E2D;&#x7684;-gc-&#x8868;&#x73B0;">Node.js &#x4E2D;&#x7684; GC &#x8868;&#x73B0;</h4><p>&#x5F53;&#x6211;&#x4EEC;&#x7528; Node.js &#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x65F6;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x8003;&#x8651;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x7684;&#x5F00;&#x9500;&#xFF0C;&#x4E0B;&#x9762;&#x4E00;&#x4E2A; Node.js &#x5185;&#x5B58;&#x56DE;&#x6536;&#x6267;&#x884C;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p><p>&#x6267;&#x884C;&#x4EE3;&#x7801;<code>node --trace_gc --trace_gc_verbose test.js</code>&#x8DDF;&#x8E2A;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC;&#x670D;&#x52A1;&#x7684; GC&#x3002;</p><pre><code class="lang-console.log">[41204:0x102001c00] Memory reducer: call rate 0.056, low alloc, foreground
+fn(); <span class="hljs-comment">// a&#x3001;b &#x7684;&#x5F15;&#x7528;&#x6B21;&#x6570;&#x4E3A; 1</span>
+</code></pre>
+<h4 id="gc-&#x7684;&#x7F3A;&#x9677;&#x3001;&#x5206;&#x4EE3;&#x56DE;&#x6536;&#x548C;&#x589E;&#x91CF;-gc">GC &#x7684;&#x7F3A;&#x9677;&#x3001;&#x5206;&#x4EE3;&#x56DE;&#x6536;&#x548C;&#x589E;&#x91CF; GC</h4>
+<p>&#x548C;&#x5176;&#x4ED6;&#x8BED;&#x8A00;&#x4E00;&#x6837; GC &#x4F1A;&#x4E2D;&#x65AD;&#x4EE3;&#x7801;&#x6267;&#x884C;&#xFF0C;&#x505C;&#x6B62;&#x5176;&#x4ED6;&#x64CD;&#x4F5C;&#x3002;&#x56E0;&#x4E3A;&#x8981;&#x904D;&#x5386;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#xFF0C;&#x56DE;&#x6536;&#x6240;&#x6709;&#x4E0D;&#x53EF;&#x8BBF;&#x95EE;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x7684;&#x8017;&#x65F6;&#x53EF;&#x80FD;&#x6709; 100ms &#x4EE5;&#x4E0A;&#x3002;&#x5728; V8 &#x5F15;&#x64CE;&#x65B0;&#x7248;&#x672C;&#x4E2D;&#x5F15;&#x5165;&#x4E86;&#x4E24;&#x79CD;&#x4F18;&#x5316;&#x65B9;&#x6CD5;&#xFF1A;1. &#x5206;&#x4EE3;&#x56DE;&#x6536;&#xFF08;Generation GC&#xFF09;&#xFF0C;2. &#x589E;&#x91CF; GC&#xFF08;increment GC&#xFF09;</p>
+<p>&#x5206;&#x4EE3;&#x56DE;&#x6536;&#xFF1A;&#x76EE;&#x7684;&#x662F;&#x901A;&#x8FC7;&#x5BF9;&#x8C61;&#x7684;&#x4F7F;&#x7528;&#x9891;&#x7387;&#x3001;&#x5B58;&#x5728;&#x65F6;&#x957F;&#x533A;&#x5206;&#x65B0;&#x751F;&#x4EE3;&#x4E0E;&#x8001;&#x751F;&#x4EE3;&#x5BF9;&#x8C61;&#x3002;&#x591A;&#x56DE;&#x6536;&#x65B0;&#x751F;&#x4EE3;&#x533A;&#xFF08;young generation&#xFF09;&#xFF0C;&#x5C11;&#x56DE;&#x6536;&#x8001;&#x751F;&#x4EE3;&#x533A;&#xFF08;tenured generation&#xFF09;&#xFF0C;&#x51CF;&#x5C11;&#x6BCF;&#x6B21;&#x9700;&#x904D;&#x5386;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x4ECE;&#x800C;&#x51CF;&#x5C11;&#x6BCF;&#x6B21;GC&#x7684;&#x8017;&#x65F6;</p>
+<p>&#x589E;&#x91CF; GC&#xFF1A;&#x628A;&#x9700;&#x8981;&#x957F;&#x8017;&#x65F6;&#x7684;&#x904D;&#x5386;&#x3001;&#x56DE;&#x6536;&#x64CD;&#x4F5C;<code>&#x62C6;&#x5206;&#x8FD0;&#x884C;</code>&#xFF0C;&#x51CF;&#x5C11;&#x4E2D;&#x65AD;&#x65F6;&#x95F4;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x589E;&#x5927;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x5F00;&#x9500;</p>
+<h4 id="nodejs-&#x4E2D;&#x7684;-gc-&#x8868;&#x73B0;">Node.js &#x4E2D;&#x7684; GC &#x8868;&#x73B0;</h4>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x7528; Node.js &#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x7A33;&#x5B9A;&#x7684;&#x670D;&#x52A1;&#x65F6;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x8003;&#x8651;&#x670D;&#x52A1;&#x5668;&#x5185;&#x5B58;&#x7684;&#x5F00;&#x9500;&#xFF0C;&#x4E0B;&#x9762;&#x4E00;&#x4E2A; Node.js &#x5185;&#x5B58;&#x56DE;&#x6536;&#x6267;&#x884C;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<p>&#x6267;&#x884C;&#x4EE3;&#x7801;<code>node --trace_gc --trace_gc_verbose test.js</code>&#x8DDF;&#x8E2A;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC;&#x670D;&#x52A1;&#x7684; GC&#x3002;</p>
+<pre><code class="lang-console.log">[41204:0x102001c00] Memory reducer: call rate 0.056, low alloc, foreground
 [41204:0x102001c00] Memory reducer: started GC #1
 [41204:0x102001c00] Heap growing factor 1.1 based on mu=0.970, speed_ratio=42956 (gc=675253, mutator=16)
 [41204:0x102001c00] Grow: old size: 21382 KB, new limit: 33604 KB (1.1)
@@ -273,12 +307,18 @@ fn(); <span class="hljs-comment">// a&#x3001;b &#x7684;&#x5F15;&#x7528;&#x6B21;&
 [41204:0x102001c00] All spaces,         used:  21552 KB, available: 1438005 KB, committed:  27684 KB
 [41204:0x102001c00] External memory reported:   1026 KB
 [41204:0x102001c00] Total time spent in GC  : 158.6 ms
-[41204:0x102001c00] Memory reducer: call rate 0.003, low alloc, foreground</code></pre>
-<p>&#x9996;&#x5148;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230; Node.js &#x533A;&#x5206; <code>New space</code>&#x3001;<code>Old space</code> &#x7B49;&#x6765;&#x5212;&#x5206;&#x68C0;&#x7D22;&#x7A7A;&#x95F4;&#x3002;&#x800C;&#x63D0;&#x793A;<code>(+ 20.4 ms in 7 steps since start of marking, biggest step 4.8 ms)</code> &#x544A;&#x8BC9;&#x6211;&#x4EEC;&#x8FD9;&#x4E2A;&#x6807;&#x8BB0;&#x7684;&#x6B65;&#x9AA4;&#x5206; 7 &#x6B65;&#x8FDB;&#x884C;&#xFF0C;&#x8017;&#x65F6;&#x6700;&#x957F;&#x7684;&#x4E00;&#x6B21;&#x65F6; 4.8ms&#x3002;&#x8FD9;&#x4F7F; JavaScript &#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x7684;&#x652F;&#x6301;&#x5F00;&#x53D1;&#x9AD8;&#x5B9E;&#x65F6;&#x5E94;&#x7528;&#x3002;</p><h4 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h4><p>&#x56E0;&#x4E3A;&#x7BC7;&#x5E45;&#x6709;&#x9650;&#xFF0C;&#x7559;&#x4E0B;&#x4E00;&#x4E9B;&#x5C0F;&#x95EE;&#x9898;&#x4F9B;&#x5927;&#x5BB6;&#x601D;&#x8003;&#xFF1A;</p><ol><li>&#x95ED;&#x5305;&#x4E00;&#x5B9A;&#x4F1A;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x4E0D;&#x53EF;&#x88AB;&#x56DE;&#x6536;&#xFF1F;
-</li>
-<li>&#x5982;&#x4F55;&#x76D1;&#x63A7;&#x4E00;&#x4E2A; Node.js &#x670D;&#x52A1;&#x7684;&#x5185;&#x5B58;&#x5F00;&#x9500;&#xFF0C;&#x5982;&#x679C;&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x9884;&#x77E5;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF1F;
-</li></ol>
-<hr><p>&#x4F5C;&#x8005;&#xFF1A;&#x8096;&#x6C90;&#x5BB8;&#xFF0C;<a href="https://github.com/cheogo/learn-javascript" target="_blank">github</a>&#x3002;</p>
+[41204:0x102001c00] Memory reducer: call rate 0.003, low alloc, foreground
+</code></pre>
+<p>&#x9996;&#x5148;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230; Node.js &#x533A;&#x5206; <code>New space</code>&#x3001;<code>Old space</code> &#x7B49;&#x6765;&#x5212;&#x5206;&#x68C0;&#x7D22;&#x7A7A;&#x95F4;&#x3002;&#x800C;&#x63D0;&#x793A;<code>(+ 20.4 ms in 7 steps since start of marking, biggest step 4.8 ms)</code> &#x544A;&#x8BC9;&#x6211;&#x4EEC;&#x8FD9;&#x4E2A;&#x6807;&#x8BB0;&#x7684;&#x6B65;&#x9AA4;&#x5206; 7 &#x6B65;&#x8FDB;&#x884C;&#xFF0C;&#x8017;&#x65F6;&#x6700;&#x957F;&#x7684;&#x4E00;&#x6B21;&#x65F6; 4.8ms&#x3002;&#x8FD9;&#x4F7F; JavaScript &#x53EF;&#x4EE5;&#x5F88;&#x597D;&#x7684;&#x652F;&#x6301;&#x5F00;&#x53D1;&#x9AD8;&#x5B9E;&#x65F6;&#x5E94;&#x7528;&#x3002;</p>
+<h4 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h4>
+<p>&#x56E0;&#x4E3A;&#x7BC7;&#x5E45;&#x6709;&#x9650;&#xFF0C;&#x7559;&#x4E0B;&#x4E00;&#x4E9B;&#x5C0F;&#x95EE;&#x9898;&#x4F9B;&#x5927;&#x5BB6;&#x601D;&#x8003;&#xFF1A;</p>
+<ol>
+<li>&#x95ED;&#x5305;&#x4E00;&#x5B9A;&#x4F1A;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x4E0D;&#x53EF;&#x88AB;&#x56DE;&#x6536;&#xFF1F;</li>
+<li>&#x5982;&#x4F55;&#x76D1;&#x63A7;&#x4E00;&#x4E2A; Node.js &#x670D;&#x52A1;&#x7684;&#x5185;&#x5B58;&#x5F00;&#x9500;&#xFF0C;&#x5982;&#x679C;&#x5904;&#x7406;&#x4E0D;&#x53EF;&#x9884;&#x77E5;&#x7684;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF1F;</li>
+</ol>
+<hr>
+<p>&#x4F5C;&#x8005;&#xFF1A;&#x8096;&#x6C90;&#x5BB8;&#xFF0C;<a href="https://github.com/cheogo/learn-javascript" target="_blank">github</a>&#x3002;</p>
+
                                 
                                 </section>
                             
@@ -310,7 +350,7 @@ fn(); <span class="hljs-comment">// a&#x3001;b &#x7684;&#x5F15;&#x7528;&#x6B21;&
                 </a>
                 
                 
-                <a href="funtion.html" class="navigation navigation-next " aria-label="Next page: JavaScript 高阶函数">
+                <a href="funtion.html" class="navigation navigation-next " aria-label="Next page: 递归、闭包、原型、继承">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -321,7 +361,7 @@ fn(); <span class="hljs-comment">// a&#x3001;b &#x7684;&#x5F15;&#x7528;&#x6B21;&
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"JavaScript 内存管理","level":"1.6","depth":1,"next":{"title":"JavaScript 高阶函数","level":"1.7","depth":1,"path":"201710/funtion.md","ref":"201710/funtion.md","articles":[]},"previous":{"title":"Event Loop","level":"1.5","depth":1,"path":"201710/eventloop.md","ref":"201710/eventloop.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201710/gc.md","mtime":"2017-10-22T06:43:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2017-10-22T06:52:11.029Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JavaScript 内存管理","level":"1.6","depth":1,"next":{"title":"递归、闭包、原型、继承","level":"1.7","depth":1,"path":"201710/funtion.md","ref":"201710/funtion.md","articles":[]},"previous":{"title":"Event Loop","level":"1.5","depth":1,"path":"201710/eventloop.md","ref":"201710/eventloop.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex","livereload"],"pluginsConfig":{"katex":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201710/gc.md","mtime":"2017-10-22T06:43:00.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-24T06:13:05.664Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -329,6 +369,10 @@ fn(); <span class="hljs-comment">// a&#x3001;b &#x7684;&#x5F15;&#x7528;&#x6B21;&
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

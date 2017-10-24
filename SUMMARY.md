@@ -6,4 +6,5 @@
 * [JavaScript 语法解析、AST、V8、JIT](201709/runtime.md)
 * [Event Loop](201710/eventloop.md)
 * [JavaScript 内存管理](201710/gc.md)
-* [JavaScript 高阶函数](201710/funtion.md)
+* [递归、闭包、原型、继承](201710/funtion.md)
+* [高阶函数、curry、函数式](201710/funtion2.md)
