@@ -106,7 +106,7 @@ Object.getOwnPropertyNames(Person.prototype) // ["constructor", "getName"]
 Person.prototype.__proto__ === Object.prototype // true
 ```
 
-3.当访问一个对象上的属性时，先尝试访问自身上的属性，如果没有，则访问自身原型上的属性。如果没有，则通过原型上的原型链，访问其构造函数的原型上的属性，如果还是没有则继续向上查找直到 Object.prototype.\_\_proto\_\_ 上返回 null
+3.当访问一个对象上的属性时，先尝试访问自身上的属性，如果没有，则访问自身原型上的属性。如果没有，则通过原型上的原型链，访问其构造函数的原型上的属性，如果还是没有则继续向上查找直到 Object.prototype，而 Object.prototype 是一个没有 \_\_proto\_\_ 原型链的对象，则查询到此为止。
 
 ###### 继承
 
