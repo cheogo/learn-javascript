@@ -1,6 +1,6 @@
 # 递归、闭包、原型、继承
 
-本文为高阶函数一章做铺垫，主要讲解：递归、闭包是什么、闭包使用场景、什么是原型和原型链、如何实现继承、继承的原理，如果对于这些函数的基本概念已经掌握，可以跳过。
+本文主要讲解、理清一些函数常用的知识点：递归、闭包是什么、闭包使用场景、什么是原型和原型链、如何实现继承、继承的原理。
 
 #### 递归
 
@@ -84,10 +84,33 @@ console.log(person2.getName()) // default
 
 #### 原型、原型链、继承
 
-javascript 函数通过原型和原型链实现继承，原型是 javaScript 函数上 prototype 属性的值，原型是一个对象，包含原型方法（属性）、构造函数和原型链（\_\_proto\_\_）。
+###### \_\_proto\_\_ 和 prototype 的区别
 
-原型链指向构造函数的原型，每个对象（注意是对象！JavaScript 的函数是第一公民所以函数也是对象）都有\_\_proto\_\_ 指向其构造函数的原型。如果访问一个对象的属性，会先尝试在对象上搜索，如果没有再通过原型链向上查找。
+1.JavaScript 中每一个对象都拥有原型链（\_\_proto\_\_）指向其构造函数的原型（prototype）
 
+```javascript
+var a = {}
+a.__proto__ === Object.prototype // true
+
+function Person () {}
+var p = new Person()
+p.__proto__ === Person.prototype // true
+```
+
+2.JavaScript 中每一个函数都拥有原型（prototype），原型也是一个对象，这个对象包括：原型链、原型方法（属性）、函数构造，同理它的原型链指向其构造函数的原型
+
+```javascript
+function Person () {}
+Person.prototype.getName = function () {}
+Object.getOwnPropertyNames(Person.prototype) // ["constructor", "getName"]
+Person.prototype.__proto__ === Object.prototype // true
+```
+
+3.当访问一个对象上的属性时，先尝试访问自身上的属性，如果没有，则访问自身原型上的属性。如果没有，则通过原型上的原型链，访问其构造函数的原型上的属性，如果还是没有则继续向上查找直到 Object.prototype.\_\_proto\_\_ 上返回 null
+
+###### 继承
+
+javascript 函数通过原型和原型链实现继承
 
 ``` javascript
 function superA (name) {
@@ -106,16 +129,16 @@ a1.getName() // xiaomuchen
 ```
 
 上述代码，描述了一个函数的经典继承，其工作原理是这样的：
-0. 继承 subA.\_\_proto\_\_ => superA.prototype
-1. 创建 var a1 = {}
-2. 使用 `new` 关键字的时候，把原型链指向原型 a1.\_\_proto\_\_ => subA.prototype
-3. 使用构造函数 subA 初始化 a1，subA.call(a1, 'xiaomuchen') => superA.call(a1, 'xiaomuchen')，a1 获得属性 name = 'xiaomuchen'
-4. a1 访问 getName 方法时，因为本身没有，通过 a1.\_\_proto\_\_ 查找到 subA.prototype，subA 没有，再通过 subA.\_\_proto\_\_ 找到原型 superA.prototype 上
 
+1. 声明父类 superA、子类 subA
+2. 重写子类 subA 的原型，指向 superA 的实例
+3. 当实例化 a1 时，a1.\_\_proto\_\_ => subA.prototype => new superA()，a1 的构造函数是 superA
+4. 同时，运行 subA 也就是 superA.call(this, 'xiaomuchen')，其中 this 指向 a1 所以 a1 继承了 name 属性
+5. 这样子类 subA 的实例 a1 就继承了 superA 的方法和属性
 
 #### 总结
 
-本文概括了递归、闭包、原型、继承，理清这些基本的概念，有助于你容易接纳更多的东西。
+本文概括了递归、闭包、原型、继承，理清这些基本的概念，有助于你接纳更多的东西，我们会在下一个章节对函数进行更深入的讨论。
 
 ------
 
