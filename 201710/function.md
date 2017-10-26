@@ -84,6 +84,8 @@ console.log(person2.getName()) // default
 
 #### 原型、原型链、继承
 
+先问一个问题：\_\_proto\_\_ 和 prototype 会出现在什么地方？它们之间是什么关系？实现继承依赖什么？
+
 ###### \_\_proto\_\_ 和 prototype 的区别
 
 1.JavaScript 中每一个对象都拥有原型链（\_\_proto\_\_）指向其构造函数的原型（prototype）
@@ -106,7 +108,17 @@ Object.getOwnPropertyNames(Person.prototype) // ["constructor", "getName"]
 Person.prototype.__proto__ === Object.prototype // true
 ```
 
-3.当访问一个对象上的属性时，先尝试访问自身上的属性，如果没有，则访问自身原型上的属性。如果没有，则通过原型上的原型链，访问其构造函数的原型上的属性，如果还是没有则继续向上查找直到 Object.prototype，而 Object.prototype 是一个没有 \_\_proto\_\_ 原型链的对象，则查询到此为止。
+3.当访问一个对象上的属性时，先尝试访问自身上的属性，再尝试访问其原型上的属性，如果没有则通过原型上的原型链，查找其构造函数上的原型上的属性，直到访问 Object.prototype 上的属性，如果还是没有，因为 Object.prototype 是一个没有 \_\_proto\_\_ 的对象，则查询到此为止，返回 undefined。
+
+```javascript
+function Person () {}
+Person.prototype.getName = function () {
+  console.log('Person')
+}
+var p = new Person()
+p.getName() // Person
+console.log(typeof p.getClass) // undefined
+```
 
 ###### 继承
 
@@ -132,9 +144,9 @@ a1.getName() // xiaomuchen
 
 1. 声明父类 superA、子类 subA
 2. 重写子类 subA 的原型，指向 superA 的实例
-3. 当实例化 a1 时，a1.\_\_proto\_\_ => subA.prototype => new superA()，a1 的构造函数是 superA
+3. 当实例化 a1 时，a1.\_\_proto\_\_ => subA.prototype => new superA() => superA.prototype，所以 a1 的构造函数是 superA
 4. 同时，运行 subA 也就是 superA.call(this, 'xiaomuchen')，其中 this 指向 a1 所以 a1 继承了 name 属性
-5. 这样子类 subA 的实例 a1 就继承了 superA 的方法和属性
+5. 这样子类 subA 的实例 a1 就继承了 superA 的原型方法和属性
 
 #### 总结
 
