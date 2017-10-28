@@ -95,6 +95,8 @@ var a = {}
 a.__proto__ === Object.prototype // true
 
 function Person () {}
+Person.__proto__ === Function.prototype // true
+
 var p = new Person()
 p.__proto__ === Person.prototype // true
 ```
@@ -108,21 +110,26 @@ Object.getOwnPropertyNames(Person.prototype) // ["constructor", "getName"]
 Person.prototype.__proto__ === Object.prototype // true
 ```
 
-3.当访问一个对象上的属性时，先尝试访问自身上的属性，再尝试访问其原型上的属性，如果没有则通过原型上的原型链，查找其构造函数上的原型上的属性，直到访问 Object.prototype 上的属性，如果还是没有，因为 Object.prototype 是一个没有 \_\_proto\_\_ 的对象，则查询到此为止，返回 undefined。
+3.当访问一个函数上的属性时，`先尝试访问自身上的属性，再尝试访问其原型上的属性`。当访问一个对象上的属性时，`先尝试访问自身上的属性，再通过原型链尝试访问其构造函数原型上的属性`。如果没有则通过原型上的原型链，继续向上查找，直到访问 Object.prototype 上的属性，如果还是没有，因为 Object.prototype 是一个没有 \_\_proto\_\_ 的对象，则查询到此为止，返回 undefined。
 
 ```javascript
 function Person () {}
+Person.getName = function () {
+  console.log('Person1')
+}
 Person.prototype.getName = function () {
-  console.log('Person')
+  console.log('Person2')
 }
 var p = new Person()
-p.getName() // Person
+
+Person.getName() // Person1
+p.getName() // Person2
 console.log(typeof p.getClass) // undefined
 ```
 
 ###### 继承
 
-javascript 函数通过原型和原型链实现继承
+JavaScript 函数通过原型和原型链实现继承
 
 ``` javascript
 function superA (name) {
