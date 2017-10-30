@@ -28,6 +28,12 @@
 ## 参考文章-201710-function
 - [JS原型、原型链深入理解](http://www.jb51.net/article/80109.htm)
 
+## 参考文章-201710-functional
+- [百度百科-函数式编程](https://baike.baidu.com/item/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/4035031?fr=aladdin)
+- [前端开发者进阶之函数柯里化Currying](http://www.cnblogs.com/pigtail/p/3447660.html)
+- [函数式编程入门教程](http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html)
+- [前端开发者进阶之函数柯里化Currying](http://www.cnblogs.com/pigtail/p/3447660.html)
+
 
 
 
