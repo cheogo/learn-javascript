@@ -241,9 +241,33 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="javascript-&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;">JavaScript &#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;</h1>
+<p>&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x662F;&#x4E00;&#x79CD;&#x7F16;&#x7A0B;&#x8303;&#x5F0F;&#xFF0C;&#x8BB0;&#x5F97;&#x5728;&#x521A;&#x5B66;&#x7F16;&#x7A0B;&#x65F6;&#x4ECE;<code>&#x9762;&#x5411;&#x8FC7;&#x7A0B;&#x7F16;&#x7A0B;</code> &#x8F6C;&#x6362;&#x5230; <code>&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;</code> &#x65F6;&#x7684;&#x89E6;&#x52A8;&#xFF0C;&#x4E86;&#x89E3; <code>&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;</code> &#x6216;&#x8BB8;&#x4F1A;&#x7ED9;&#x4F60;&#x4E00;&#x4E2A;&#x6700;&#x521D;&#x7684;&#x60CA;&#x559C;&#x3002;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5927;&#x7684;&#x547D;&#x9898;&#xFF0C;&#x5728;&#x672C;&#x6587;&#x4E2D;&#x5C06;&#x4ECB;&#x7ECD;&#x51E0;&#x4E2A;&#x57FA;&#x672C;&#x6982;&#x5FF5;&#xFF1A;<code>&#x7EAF;&#x51FD;&#x6570;</code>&#x3001;<code>&#x67EF;&#x91CC;&#x5316;&#xFF08;curry&#xFF09;</code>&#x3001;<code>&#x7EC4;&#x5408;&#xFF08;compose&#xFF09;</code>&#x3001;<code>&#x5BB9;&#x5668;&#xFF08;container&#xFF09;</code>&#x3001;<code>&#x51FD;&#x5B50;&#xFF08;functor&#xFF09;</code>&#xFF0C;&#x5E0C;&#x671B;&#x80FD;&#x6FC0;&#x8D77;&#x4F60;&#x5BF9;&#x5B83;&#x7684;&#x5174;&#x8DA3;&#x3002;</p>
+<h4 id="&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x94FE;&#x5F0F;&#x8C03;&#x7528;">&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x94FE;&#x5F0F;&#x8C03;&#x7528;</h4>
+<p>&#x5148;&#x8BA9;&#x6211;&#x4EEC;&#x5FD8;&#x6389;&#x4E0A;&#x9762;&#x90A3;&#x4E9B;&#x5947;&#x602A;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x770B;&#x4E00;&#x4E2A;&#x8D2F;&#x5F7B;&#x5168;&#x6587;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#x3002;</p>
+<pre><code class="lang-javaScript"><span class="hljs-keyword">var</span> Container = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">this</span>.__value = x;
+}
+
+Container.of = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Container(x); };
+
+Container.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>)</span>{
+  <span class="hljs-keyword">return</span> Container.of(f(<span class="hljs-keyword">this</span>.__value))
+}
+</code></pre>
+<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x5B9E;&#x73B0;&#x4E86;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x770B;&#x770B;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x5B83;</p>
+<pre><code class="lang-javaScript">Container.of(<span class="hljs-number">3</span>); <span class="hljs-comment">// Container {__value: 3}</span>
+Container.of(<span class="hljs-number">4</span>); <span class="hljs-comment">// Container {__value: 4}</span>
+
+<span class="hljs-keyword">var</span> add1 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>{ <span class="hljs-keyword">return</span> num + <span class="hljs-number">1</span> };
+<span class="hljs-keyword">var</span> add2 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>{ <span class="hljs-keyword">return</span> num + <span class="hljs-number">2</span> };
+
+Container.of(<span class="hljs-number">3</span>).map(add1).map(add2) <span class="hljs-comment">// Container {__value: 6}</span>
+Container.of(<span class="hljs-number">4</span>).map(add2).map(add2).map(add2) <span class="hljs-comment">// Container {__value: 10}</span>
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x5B9E;&#x4F8B;&#x4E2D;&#x51FA;&#x73B0;&#x7684; <code>Container</code> &#x662F;&#x4E00;&#x4E2A;&#x5BB9;&#x5668;&#xFF0C;&#x901A;&#x8FC7; <code>Container.of</code> &#x6765;&#x5B9E;&#x4F8B;&#x5316;&#x4FDD;&#x5B58;&#x503C;&#x5230; <code>this.__value</code> &#x3002;<code>add1</code>&#x3001;<code>add2</code> &#x90FD;&#x662F; <code>&#x7EAF;&#x51FD;&#x6570;</code>&#xFF0C;&#x6211;&#x4EEC;&#x901A;&#x8FC7; <code>map</code> &#x51FD;&#x6570;&#x6765;&#x64CD;&#x4F5C;&#x5BB9;&#x5668;&#x5185;&#x7684;&#x503C;&#xFF0C;&#x6211;&#x4EEC;&#x628A; <code>Container</code> &#x770B;&#x4F5C;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x8FD9;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>map</code> &#x64CD;&#x4F5C;&#xFF0C;&#x90A3;&#x4E48;&#x5B83;&#x5C31;&#x53EB; <code>functor</code>&#x3002;</p>
 <h4 id="&#x7EAF;&#x51FD;&#x6570;">&#x7EAF;&#x51FD;&#x6570;</h4>
 <blockquote>
-<p>&#x7EAF;&#x51FD;&#x6570;&#x662F;&#x8FD9;&#x6837;&#x4E00;&#x79CD;&#x51FD;&#x6570;&#xFF0C;&#x5373;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x6C38;&#x8FDC;&#x4F1A;&#x5F97;&#x5230;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x800C;&#x4E14;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x526F;&#x4F5C;&#x7528;&#x3002;</p>
+<p>&#x4EC0;&#x4E48;&#x662F;&#x7EAF;&#x51FD;&#x6570;&#xFF1A;&#x7EAF;&#x51FD;&#x6570;&#x662F;&#x8FD9;&#x6837;&#x4E00;&#x79CD;&#x51FD;&#x6570;&#xFF0C;&#x5373;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x5165;&#xFF0C;&#x6C38;&#x8FDC;&#x4F1A;&#x5F97;&#x5230;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x800C;&#x4E14;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x53EF;&#x89C2;&#x5BDF;&#x7684;&#x526F;&#x4F5C;&#x7528;&#x3002;</p>
 </blockquote>
 <p>&#x6BD4;&#x5982; <code>slice</code> &#x548C; <code>splice</code>&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x4F5C;&#x7528;&#x5E76;&#x522B;&#x65E0;&#x4E8C;&#x81F4;&#x3002;&#x4F46;&#x662F;&#x6211;&#x4EEC;&#x8BF4; <code>slice</code> &#x7B26;&#x5408;&#x7EAF;&#x51FD;&#x6570;&#x7684;&#x5B9A;&#x4E49;&#x662F;&#x56E0;&#x4E3A;&#x5BF9;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x5165;&#x5B83;&#x4FDD;&#x8BC1;&#x80FD;&#x8FD4;&#x56DE;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x51FA;&#x3002;&#x800C; <code>splice</code> &#x7684;&#x8C03;&#x7528;&#x5374;&#x4F1A;&#x4EA7;&#x751F;&#x53EF;&#x89C2;&#x5BDF;&#x5230;&#x7684;&#x526F;&#x4F5C;&#x7528;&#xFF0C;&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#x88AB;&#x6C38;&#x4E45;&#x5730;&#x6539;&#x53D8;&#x4E86;&#x3002;</p>
 <pre><code class="lang-javaScript"><span class="hljs-keyword">var</span> xs = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];
@@ -251,31 +275,101 @@
 <span class="hljs-comment">// &#x7EAF;&#x7684;</span>
 xs.slice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">// =&gt; [1,2,3]</span>
 xs.slice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">// =&gt; [1,2,3]</span>
-xs.slice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">// =&gt; [1,2,3]</span>
 
 <span class="hljs-comment">// &#x4E0D;&#x7EAF;&#x7684;</span>
 xs.splice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">// =&gt; [1,2,3]</span>
 xs.splice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">// =&gt; [4,5]</span>
-xs.splice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">// =&gt; []</span>
 </code></pre>
 <p>&#x5728;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C3D;&#x91CF;&#x675C;&#x7EDD; <code>splice</code> &#x8FD9;&#x79CD;&#x4F1A;&#x6539;&#x53D8;&#x6570;&#x636E;&#x7684;&#x51FD;&#x6570;&#x3002;&#x6211;&#x4EEC;&#x8FFD;&#x6C42;&#x7684;&#x662F; <code>slice</code> &#x90A3;&#x79CD;&#x53EF;&#x9760;&#x7684;&#xFF0C;&#x6BCF;&#x6B21;&#x90FD;&#x80FD;&#x8FD4;&#x56DE;&#x540C;&#x6837;&#x7ED3;&#x679C;&#x7684;&#x51FD;&#x6570;&#x3002;</p>
 <p>&#x518D;&#x770B;&#x53E6;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;</p>
 <pre><code class="lang-javaScript"><span class="hljs-comment">// &#x4E0D;&#x7EAF;&#x7684;</span>
-<span class="hljs-keyword">var</span> minimum = <span class="hljs-number">20</span>;
-<span class="hljs-keyword">var</span> checkAge = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">age</span>) </span>{
-  <span class="hljs-keyword">return</span> age &gt;= minimum;
-};
+<span class="hljs-keyword">var</span> num_1 = <span class="hljs-number">1</span>
+<span class="hljs-keyword">var</span> add1 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>{ <span class="hljs-keyword">return</span> num + num_1 };
 
 <span class="hljs-comment">// &#x7EAF;&#x7684;</span>
-<span class="hljs-keyword">var</span> checkAge = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">age</span>) </span>{
-  <span class="hljs-keyword">const</span> minimum = <span class="hljs-number">20</span>;
-  <span class="hljs-keyword">return</span> age &gt;= minimum;
+<span class="hljs-keyword">var</span> add1 = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>{ <span class="hljs-keyword">return</span> num + <span class="hljs-number">1</span> };
+</code></pre>
+<p>&#x5728;&#x4E0D;&#x7EAF;&#x7684;&#x7248;&#x672C;&#x4E2D;&#xFF0C;<code>add1</code> &#x7684;&#x7ED3;&#x679C;&#x5C06;&#x53D6;&#x51B3;&#x4E8E; <code>num_1</code> &#x8FD9;&#x4E2A;&#x53EF;&#x53D8;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x3002;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5B83;&#x53D6;&#x51B3;&#x4E8E;<code>&#x7CFB;&#x7EDF;&#x72B6;&#x6001;</code>&#xFF08;system state&#xFF09;&#x3002;&#x56E0;&#x4E3A;&#x5B83;&#x5F15;&#x5165;&#x4E86;&#x5916;&#x90E8;&#x7684;&#x73AF;&#x5883;&#xFF0C;&#x4ECE;&#x800C;&#x589E;&#x52A0;&#x4E86;<code>&#x8BA4;&#x77E5;&#x8D1F;&#x8377;</code>&#xFF08;cognitive load&#xFF09;&#x3002;&#x8FD9;&#x79CD;&#x4F9D;&#x8D56;&#x72B6;&#x6001;&#x662F;&#x5F71;&#x54CD;&#x7CFB;&#x7EDF;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x7F6A;&#x9B41;&#x7978;&#x9996;&#xFF0C;&#x4E0D;&#x4EC5;&#x8BA9;&#x5B83;&#x53D8;&#x5F97;&#x4E0D;&#x7EAF;&#xFF0C;&#x800C;&#x4E14;&#x5BFC;&#x81F4;&#x6BCF;&#x6B21;&#x6211;&#x4EEC;&#x601D;&#x8003;&#x6574;&#x4E2A;&#x8F6F;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x75DB;&#x82E6;&#x4E0D;&#x582A;&#x3002;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x4F7F;&#x7528;&#x7EAF;&#x51FD;&#x6570;&#x5462;&#xFF1F;&#x4E3E;&#x4F8B;&#x5BB9;&#x6613;&#x770B;&#x5230;&#x7684;&#x597D;&#x5904;&#xFF1A;1. &#x53EF;&#x7F13;&#x5B58;&#x6027;&#xFF0C;&#x56E0;&#x4E3A;&#x7EAF;&#x51FD;&#x6570;&#x5BF9;&#x4E8E;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x5165;&#x6709;&#x76F8;&#x540C;&#x7684;&#x8F93;&#x51FA;&#xFF0C;&#x6240;&#x4EE5;&#x7EAF;&#x51FD;&#x6570;&#x662F;&#x53EF;&#x4EE5;&#x7F13;&#x5B58;&#x8FD0;&#x7B97;&#x7ED3;&#x679C;&#x7684;&#xFF1B;2. &#x53EF;&#x79FB;&#x690D;&#x6027;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x4F1A;&#x53D7;<code>&#x73AF;&#x5883;&#x53D8;&#x91CF;</code>&#x7B49;&#x5916;&#x90E8;&#x72B6;&#x6001;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x79FB;&#x690D;&#xFF1B;3. &#x53EF;&#x6D4B;&#x8BD5;&#x6027;&#xFF0C;&#x65E0;&#x9700;&#x914D;&#x7F6E;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x4E00;&#x4E2A;&#x8F93;&#x5165;&#x4E00;&#x4E2A;&#x8F93;&#x51FA;&#xFF0C;&#x76F4;&#x63A5;&#x65AD;&#x8A00;&#xFF1B;&#x7B49;&#x7B49;&#x3002;</p>
+<p>&#x6709;&#x54EA;&#x4E9B;&#x4E0D;&#x7EAF;&#x7684;&#x60C5;&#x51B5;&#x5462;&#xFF1F;1. IO &#x64CD;&#x4F5C;&#xFF0C;&#x4F60;&#x4E0D;&#x77E5;&#x9053;&#x4F60;&#x8BFB;&#x53D6;&#x7684;&#x5185;&#x5BB9;&#x4F1A;&#x662F;&#x600E;&#x6837;&#xFF1B;2. &#x63A5;&#x53E3;&#x8BF7;&#x6C42;&#xFF0C;&#x4F60;&#x786E;&#x5B9A;&#x8FD4;&#x56DE;&#x7684;&#x5185;&#x5BB9;&#x662F;&#x4EC0;&#x4E48;&#xFF1B;3. dom &#x64CD;&#x4F5C;&#xFF0C;&#x5F15;&#x8D77;&#x4E86;&#x526F;&#x4F5C;&#x7528;&#xFF1B;4. &#x751A;&#x81F3;&#x8FDE; console.log &#x90FD;&#x662F;&#x4E0D;&#x7EAF;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x6709;&#x526F;&#x4F5C;&#x7528;&#xFF1B;&#x7B49;&#x7B49;&#x3002;&#x5BF9;&#x4E8E;&#x4E0D;&#x7EAF;&#x7684;&#x51FD;&#x6570;&#x6211;&#x4EEC;&#x5C3D;&#x91CF;&#x628A;&#x5B83;&#x63A7;&#x5236;&#x5728;&#x53EF;&#x63A7;&#x8303;&#x56F4;&#x5185;&#x53D1;&#x751F;&#xFF0C;&#x8FD9;&#x4E2A;&#x4F1A;&#x5728;&#x6587;&#x7AE0;&#x540E;&#x9762;&#x63D0;&#x5230;&#x3002;</p>
+<h4 id="&#x51FD;&#x6570;&#x67EF;&#x91CC;&#x5316;">&#x51FD;&#x6570;&#x67EF;&#x91CC;&#x5316;</h4>
+<blockquote>
+<p>&#x4EC0;&#x4E48;&#x662F;&#x67EF;&#x91CC;&#x5316;&#xFF08;curry&#xFF09;&#xFF1F;curry &#x7684;&#x6982;&#x5FF5;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x4F20;&#x9012;&#x7ED9;&#x51FD;&#x6570;&#x4E00;&#x90E8;&#x5206;&#x53C2;&#x6570;&#x6765;&#x8C03;&#x7528;&#x5B83;&#xFF0C;&#x8BA9;&#x5B83;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x53BB;&#x5904;&#x7406;&#x5269;&#x4E0B;&#x7684;&#x53C2;&#x6570;</p>
+</blockquote>
+<p>&#x7B80;&#x5355;&#x7684;&#x5B9E;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, y</span>) </span>{  <span class="hljs-keyword">return</span> x + y; }
+add(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)   <span class="hljs-comment">// 3</span>
+add(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment">// 11</span>
+add(<span class="hljs-number">10</span>, <span class="hljs-number">2</span>)  <span class="hljs-comment">// 12</span>
+add(<span class="hljs-number">10</span>, <span class="hljs-number">3</span>)  <span class="hljs-comment">// 13</span>
+
+<span class="hljs-comment">// curry</span>
+<span class="hljs-keyword">var</span> add = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">y</span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+  };
+};
+
+<span class="hljs-keyword">var</span> increment = add(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">var</span> addTen = add(<span class="hljs-number">10</span>);
+
+increment(<span class="hljs-number">2</span>); <span class="hljs-comment">// 3</span>
+addTen(<span class="hljs-number">1</span>); <span class="hljs-comment">// 11</span>
+addTen(<span class="hljs-number">2</span>); <span class="hljs-comment">// 12</span>
+addTen(<span class="hljs-number">3</span>); <span class="hljs-comment">// 13</span>
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x628A; <code>add</code> &#x51FD;&#x6570;&#x901A;&#x8FC7;&#x67EF;&#x91CC;&#x5316;&#x53D8;&#x6210;&#x4E86;&#x63A5;&#x53D7;&#x90E8;&#x5206;&#x53C2;&#x6570;&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5904;&#x7406;&#x5269;&#x4F59;&#x51FD;&#x6570;&#x4E14;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x7684;&#x51FD;&#x6570;&#x3002;&#x5728;&#x5B9E;&#x9645;&#x73AF;&#x5883;&#x4E2D;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x7528;&#x5230; <code>ramda</code> &#x8FD9;&#x6837;&#x7684;&#x5E93;&#x6765;&#x5E2E;&#x52A9;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x67EF;&#x91CC;&#x5316;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> R = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;ramda&apos;</span>);
+<span class="hljs-keyword">var</span> add = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, y</span>) </span>{ <span class="hljs-keyword">return</span> x + y; }
+<span class="hljs-keyword">var</span> addTen = R.curry(add)(<span class="hljs-number">10</span>)
+
+addTen(<span class="hljs-number">1</span>); <span class="hljs-comment">// 11</span>
+addTen(<span class="hljs-number">2</span>); <span class="hljs-comment">// 12</span>
+</code></pre>
+<p>&#x67EF;&#x91CC;&#x5316;&#x662F;&#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x4ED6;&#x80FD;&#x5B9E;&#x73B0;&#x9884;&#x52A0;&#x8F7D;&#x51FD;&#x6570;&#x3001;&#x5206;&#x6B65;&#x53D6;&#x503C;&#x3001;&#x907F;&#x514D;&#x91CD;&#x590D;&#x4F20;&#x53C2;&#x3001;&#x9501;&#x5B9A;&#x51FD;&#x6570;&#x8FD0;&#x884C;&#x73AF;&#x5883;&#x7B49;&#x7B49;&#x529F;&#x80FD;&#x3002;</p>
+<h4 id="&#x51FD;&#x6570;&#x7EC4;&#x5408;">&#x51FD;&#x6570;&#x7EC4;&#x5408;</h4>
+<p>&#x8FD9;&#x5C31;&#x662F;&#x7EC4;&#x5408;&#xFF08;compose&#xFF09;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &#x7B80;&#x5355;&#x5B9E;&#x73B0;&#xFF0C;&#x590D;&#x6742;&#x5B9E;&#x73B0;&#x53EF;&#x4EE5;&#x4F20;&#x9012;&#x591A;&#x4E2A;&#x51FD;&#x6570;&#x7528;&#x4E8E;&#x7EC4;&#x5408;</span>
+<span class="hljs-keyword">var</span> compose = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f,g</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">return</span> f(g(x));
+  };
 };
 </code></pre>
-<p>&#x5728;&#x4E0D;&#x7EAF;&#x7684;&#x7248;&#x672C;&#x4E2D;&#xFF0C;<code>checkAge</code> &#x7684;&#x7ED3;&#x679C;&#x5C06;&#x53D6;&#x51B3;&#x4E8E; <code>minimum</code> &#x8FD9;&#x4E2A;&#x53EF;&#x53D8;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x3002;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5B83;&#x53D6;&#x51B3;&#x4E8E;<code>&#x7CFB;&#x7EDF;&#x72B6;&#x6001;</code>&#xFF08;system state&#xFF09;&#x3002;&#x8FD9;&#x4E00;&#x70B9;&#x4EE4;&#x4EBA;&#x6CAE;&#x4E27;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x5F15;&#x5165;&#x4E86;&#x5916;&#x90E8;&#x7684;&#x73AF;&#x5883;&#xFF0C;&#x4ECE;&#x800C;&#x589E;&#x52A0;&#x4E86;<code>&#x8BA4;&#x77E5;&#x8D1F;&#x8377;</code>&#xFF08;cognitive load&#xFF09;&#x3002;&#x8FD9;&#x79CD;&#x4F9D;&#x8D56;&#x72B6;&#x6001;&#x662F;&#x5F71;&#x54CD;&#x7CFB;&#x7EDF;&#x590D;&#x6742;&#x5EA6;&#x7684;&#x7F6A;&#x9B41;&#x7978;&#x9996;&#xFF0C;&#x4E0D;&#x4EC5;&#x8BA9;&#x5B83;&#x53D8;&#x5F97;&#x4E0D;&#x7EAF;&#xFF0C;&#x800C;&#x4E14;&#x5BFC;&#x81F4;&#x6BCF;&#x6B21;&#x6211;&#x4EEC;&#x601D;&#x8003;&#x6574;&#x4E2A;&#x8F6F;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x75DB;&#x82E6;&#x4E0D;&#x582A;&#x3002;</p>
-<h4 id="&#x51FD;&#x6570;&#x67EF;&#x91CC;&#x5316;">&#x51FD;&#x6570;&#x67EF;&#x91CC;&#x5316;</h4>
-<p>&#x4EC0;&#x4E48;&#x662F;&#x67EF;&#x91CC;&#x5316;&#xFF08;currying&#xFF09;&#xFF1F;&#x67EF;&#x91CC;&#x5316;&#x662F;&#x628A;&#x63A5;&#x53D7;&#x591A;&#x4E2A;&#x53C2;&#x6570;&#x53D8;&#x6362;&#x6210;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x5355;&#x4E00;&#x53C2;&#x6570;&#x5E76;&#x8FD4;&#x56DE;&#x63A5;&#x53D7;&#x4F59;&#x4E0B;&#x53C2;&#x6570;&#x4E14;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x7684;&#x65B0;&#x51FD;&#x6570;&#x7684;&#x6280;&#x672F;&#x3002;</p>
-<p>// TODO</p>
+<p>&#x7EC4;&#x5408;&#x591A;&#x4E2A;&#x51FD;&#x6570;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x4E14;&#x51FD;&#x6570;&#x4ECE;&#x53F3;&#x5F80;&#x5DE6;&#x8FD0;&#x884C;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> double = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">num</span>) </span>{ <span class="hljs-keyword">return</span> num * <span class="hljs-number">2</span> }
+<span class="hljs-keyword">var</span> add =  R.curry(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x, y</span>) </span>{ <span class="hljs-keyword">return</span> x + y; })
+
+<span class="hljs-keyword">var</span> price = compose(double, add(<span class="hljs-number">10</span>)) <span class="hljs-comment">// &#x901A;&#x8FC7;&#x6210;&#x672C;&#x83B7;&#x53D6;&#x5546;&#x54C1;&#x4EF7;&#x683C;</span>
+
+price(<span class="hljs-number">10</span>) <span class="hljs-comment">// 40</span>
+price(<span class="hljs-number">20</span>) <span class="hljs-comment">// 60</span>
+</code></pre>
+<p>&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x7EC4;&#x5408;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#xFF0C;&#x4E00;&#x6B21;&#x6027;&#x7684;&#x5408;&#x5E76;&#x591A;&#x4E2A;&#x5904;&#x7406;&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x7684;&#x6539;&#x53D8;&#x51FD;&#x6570;&#x7684;&#x6267;&#x884C;&#x987A;&#x5E8F;&#x3002;</p>
+<h4 id="&#x5BB9;&#x5668;&#x548C;&#x51FD;&#x5B50;&#xFF08;functor&#xFF09;">&#x5BB9;&#x5668;&#x548C;&#x51FD;&#x5B50;&#xFF08;functor&#xFF09;</h4>
+<p>&#x8BA9;&#x6211;&#x4EEC;&#x56DE;&#x987E;&#x5F00;&#x5934;&#x7684;&#x4F8B;&#x5B50;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Container = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">this</span>.__value = x;
+}
+
+Container.of = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Container(x); };
+
+Container.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">f</span>)</span>{
+  <span class="hljs-keyword">return</span> Container.of(f(<span class="hljs-keyword">this</span>.__value))
+}
+</code></pre>
+<p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x8F6C;&#x6362;&#x89D2;&#x5EA6;&#xFF0C;&#x628A;&#x8C03;&#x7528; <code>Container.of</code> &#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x770B;&#x4F5C;&#x4E00;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784; <code>Container {__value: 3}</code> &#xFF0C;&#x8FD9;&#x79CD;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x53EA;&#x80FD;&#x4F7F;&#x7528; <code>map</code> &#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#xFF0C;&#x7C7B;&#x4F3C;&#x8FD9;&#x6837;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x88AB;&#x79F0;&#x4E3A; <code>functor</code>&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#x505A;&#x7684;&#x597D;&#x5904;&#x662F;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x6211;&#x4EEC;&#x80FD;&#x5728;&#x4E0D;&#x79BB;&#x5F00; <code>&#x5BB9;&#x5668;&#xFF08;Container&#xFF09;</code> &#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x64CD;&#x4F5C;&#x5BB9;&#x5668;&#x91CC;&#x9762;&#x7684;&#x503C;&#xFF0C;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x4E4B;&#x540E;&#x53C8;&#x653E;&#x56DE;&#x5BB9;&#x5668;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4E0D;&#x65AD;&#x7684;&#x8FDB;&#x884C;&#x8FD9;&#x4E00;&#x64CD;&#x4F5C;&#xFF0C;&#x5C31;&#x50CF; <code>&#x7EC4;&#x5408;&#x51FD;&#x6570;</code> &#x4E00;&#x6837;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x62BD;&#x8C61;&#xFF0C;&#x6211;&#x4EEC;&#x8BA9;&#x5BB9;&#x5668;&#x4FDD;&#x5B58;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x8BF7;&#x6C42;&#x5BB9;&#x5668;&#x901A;&#x8FC7; <code>map</code> &#x91CC;&#x7684;&#x51FD;&#x6570;&#x53BB;&#x64CD;&#x4F5C;&#x503C;&#x3002;</p>
+<h4 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h4>
+<p>&#x5728;&#x6587;&#x7AE0;&#x4E2D;&#xFF0C;&#x63D0;&#x5230;&#x4E86; <code>&#x7EAF;&#x51FD;&#x6570;</code>&#x3001;<code>&#x67EF;&#x91CC;&#x5316;&#xFF08;curry&#xFF09;</code>&#x3001;<code>&#x7EC4;&#x5408;&#xFF08;compose&#xFF09;</code>&#x3001;<code>&#x5BB9;&#x5668;&#xFF08;container&#xFF09;</code>&#x3001;<code>&#x51FD;&#x5B50;&#xFF08;functor&#xFF09;</code>&#xFF0C;&#x4E0D;&#x8981;&#x770B;&#x5B83;&#x4EEC;&#x5F88;&#x9065;&#x8FDC;&#x5176;&#x5B9E;&#x5DF2;&#x7ECF;&#x6216;&#x591A;&#x6216;&#x5C11;&#x51FA;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x8EAB;&#x8FB9;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;&#x5C16;&#x5934;&#x51FD;&#x6570;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> curryAdd = x =&gt; y =&gt; x + y
+<span class="hljs-keyword">const</span> compose = (f, g) =&gt; x =&gt; f(g(x))
+<span class="hljs-keyword">const</span> double = num =&gt; num * <span class="hljs-number">2</span>
+<span class="hljs-keyword">const</span> price = y =&gt; compose(double, curryAdd(<span class="hljs-number">10</span>))(y)
+
+<span class="hljs-built_in">console</span>.log(price(<span class="hljs-number">0</span>)) <span class="hljs-comment">// 20</span>
+</code></pre>
+<p>&#x4EC5;&#x4EC5;&#x51E0;&#x884C;&#x4EE3;&#x7801;&#x5C31;&#x53EF;&#x4EE5;&#x4F53;&#x9A8C; <code>curry</code> &#x548C; <code>compose</code> &#x5DE5;&#x5177;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x9605;&#x8BFB;&#x672C;&#x6587;&#x4E4B;&#x540E;&#x5BF9;&#x8FD9;&#x79CD;&#x7F16;&#x7A0B;&#x8303;&#x5F0F;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x7684;&#x8BDD;&#xFF0C;&#x6216;&#x8005;&#x5BF9; <code>&#x4E0D;&#x7EAF;&#x64CD;&#x4F5C;&#x7684;&#x5904;&#x7406;</code>&#x3001;<code>&#x5904;&#x7406;&#x9519;&#x8BEF;&#x548C;&#x6D41;&#x7A0B;</code> &#x7B49;&#x5EF6;&#x4F38;&#x5185;&#x5BB9;&#x597D;&#x5947;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x9605;&#x8BFB;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;<a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details" target="_blank">&#x300A;JS &#x51FD;&#x6570;&#x5F0F;&#x7F16;&#x7A0B;&#x6307;&#x5357;&#x300B;</a>&#x3002;</p>
 <hr>
 <p>&#x4F5C;&#x8005;&#xFF1A;&#x8096;&#x6C90;&#x5BB8;&#xFF0C;<a href="https://github.com/cheogo/learn-javascript" target="_blank">github</a>&#x3002;</p>
 
@@ -317,7 +411,7 @@ xs.splice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"JavaScript 函数式编程","level":"1.8","depth":1,"previous":{"title":"递归、闭包、原型、继承","level":"1.7","depth":1,"path":"201710/function.md","ref":"201710/function.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex","livereload"],"pluginsConfig":{"katex":{},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201710/functional.md","mtime":"2017-10-30T14:00:34.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-10-30T11:33:14.232Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JavaScript 函数式编程","level":"1.8","depth":1,"previous":{"title":"递归、闭包、原型、继承","level":"1.7","depth":1,"path":"201710/function.md","ref":"201710/function.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201710/functional.md","mtime":"2017-11-04T10:09:13.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-04T10:11:13.347Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -325,10 +419,6 @@ xs.splice(<span class="hljs-number">0</span>,<span class="hljs-number">3</span>)
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
