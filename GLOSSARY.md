@@ -34,8 +34,9 @@
 - [Functor, Applicative, 以及 Monad 的图片阐释](http://jiyinyiyong.github.io/monads-in-pictures/)
 
 ## 参考文章-201711-process
-- []()
+- 无参考
 
+## 参考文章-201711-design
 
 
 

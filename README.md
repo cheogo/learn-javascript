@@ -11,4 +11,5 @@
 - [JavaScript 内存管理](https://cheogo.github.io/learn-javascript/201710/gc.html)
 - [递归、闭包、原型、继承](https://cheogo.github.io/learn-javascript/201710/function.html)
 - [JavaScript 函数式编程](https://cheogo.github.io/learn-javascript/201710/functional.html)
-- JavaScript 流程控制
+- [JavaScript 异步流程控制](https://cheogo.github.io/learn-javascript/201711/process.html)
+- JavaScript 设计模式

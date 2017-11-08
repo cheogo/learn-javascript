@@ -8,4 +8,5 @@
 * [JavaScript 内存管理](201710/gc.md)
 * [递归、闭包、原型、继承](201710/function.md)
 * [JavaScript 函数式编程](201710/functional.md)
-* [JavaScript 流程控制](201711/process.md)
+* [JavaScript 异步流程控制](201711/process.md)
+* [JavaScript 设计模式](201711/design.md)

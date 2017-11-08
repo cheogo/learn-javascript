@@ -202,7 +202,20 @@
                 <a href="../201711/process.html">
             
                     
-                    JavaScript 流程控制
+                    JavaScript 异步流程控制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../201711/design.html">
+            
+                <a href="../201711/design.html">
+            
+                    
+                    JavaScript 设计模式
             
                 </a>
             
@@ -289,7 +302,7 @@ scopeTest();
 </code></pre>
 <h4 id="v8&#x3001;jit">V8&#x3001;JIT</h4>
 <p>&#x6211;&#x4EEC;&#x5E38;&#x8BF4;&#x7684; V8 &#x662F; Google &#x53D1;&#x5E03;&#x7684;&#x5F00;&#x6E90; JavaScript &#x5F15;&#x64CE;&#xFF0C;&#x91C7;&#x7528; C++ &#x7F16;&#x5199;&#x3002;SpiderMonkey&#xFF08;Mozilla&#xFF0C;&#x57FA;&#x4E8E; C&#xFF09;&#x3001;Rhino&#xFF08;Mozilla&#xFF0C;&#x57FA;&#x4E8E; Java&#xFF09;&#xFF0C;&#x800C; Nodejs &#x4F9D;&#x8D56;&#x4E8E; V8 &#x5F15;&#x64CE;&#x5F00;&#x53D1;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x5185;&#x5BB9;&#x662F; JavaScript &#x5728; V8 &#x5F15;&#x64CE;&#x4E2D;&#x7684;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#xFF0C;&#x800C;&#x7C7B;&#x4F3C;&#x7684; JavaScript &#x73B0;&#x4EE3;&#x5F15;&#x64CE;&#x5BF9;&#x4E8E;&#x8FD9;&#x4E9B;&#x5B9E;&#x73B0;&#x5927;&#x540C;&#x5C0F;&#x5F02;&#x3002;</p>
-<p>&#x5728;&#x672C;&#x6587;&#x7684;&#x5F00;&#x5934;&#x63D0;&#x5230;&#x4E86;&#x7F16;&#x8BD1;&#x578B;&#x8BED;&#x8A00;&#xFF0C;&#x89E3;&#x91CA;&#x578B;&#x8BED;&#x8A00;&#x3002;JavaScript &#x662F;&#x89E3;&#x91CA;&#x578B;&#x8BED;&#x8A00;&#x4E14;<code>&#x65E0;&#x7C7B;&#x578B;</code>&#xFF0C;&#x5728;&#x751F;&#x6210; AST &#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x5F00;&#x59CB;&#x4E00;&#x8FB9;&#x89E3;&#x91CA;&#xFF0C;&#x4E00;&#x8FB9;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x4E2A;&#x5F0A;&#x7AEF;&#xFF0C;&#x5F53;&#x67D0;&#x6BB5;&#x4EE3;&#x7801;&#x88AB;&#x591A;&#x6B21;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x5B83;&#x5C31;&#x6709;&#x4E86;&#x53EF;&#x4F18;&#x5316;&#x7684;&#x7A7A;&#x95F4;&#xFF08;&#x6BD4;&#x5982;&#x7C7B;&#x578B;&#x5224;&#x65AD;&#x4F18;&#x5316;&#xFF09;&#xFF0C;&#x800C;&#x4E0D;&#x7528;&#x4E00;&#x6B21;&#x6B21;&#x7684;&#x53BB;&#x91CD;&#x590D;&#x4E4B;&#x524D;&#x7684;&#x89E3;&#x91CA;&#x6267;&#x884C;&#x3002;
+<p>&#x5728;&#x672C;&#x6587;&#x7684;&#x5F00;&#x5934;&#x63D0;&#x5230;&#x4E86;&#x7F16;&#x8BD1;&#x578B;&#x8BED;&#x8A00;&#xFF0C;&#x89E3;&#x91CA;&#x578B;&#x8BED;&#x8A00;&#x3002;JavaScript &#x662F;&#x89E3;&#x91CA;&#x578B;&#x8BED;&#x8A00;&#x4E14;<code>&#x5F31;&#x7C7B;&#x578B;</code>&#xFF0C;&#x5728;&#x751F;&#x6210; AST &#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x5F00;&#x59CB;&#x4E00;&#x8FB9;&#x89E3;&#x91CA;&#xFF0C;&#x4E00;&#x8FB9;&#x6267;&#x884C;&#xFF0C;&#x4F46;&#x662F;&#x6709;&#x4E2A;&#x5F0A;&#x7AEF;&#xFF0C;&#x5F53;&#x67D0;&#x6BB5;&#x4EE3;&#x7801;&#x88AB;&#x591A;&#x6B21;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x5B83;&#x5C31;&#x6709;&#x4E86;&#x53EF;&#x4F18;&#x5316;&#x7684;&#x7A7A;&#x95F4;&#xFF08;&#x6BD4;&#x5982;&#x7C7B;&#x578B;&#x5224;&#x65AD;&#x4F18;&#x5316;&#xFF09;&#xFF0C;&#x800C;&#x4E0D;&#x7528;&#x4E00;&#x6B21;&#x6B21;&#x7684;&#x53BB;&#x91CD;&#x590D;&#x4E4B;&#x524D;&#x7684;&#x89E3;&#x91CA;&#x6267;&#x884C;&#x3002;
 &#x7F16;&#x8BD1;&#x578B;&#x8BED;&#x8A00;&#x5982; JAVA&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x6267;&#x884C;&#x524D;&#x5C31;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#x7F16;&#x8BD1;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4F1A;&#x8017;&#x8D39;&#x5927;&#x91CF;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x663E;&#x7136;&#x4E0D;&#x9002;&#x7528;&#x4E8E; Web &#x4EA4;&#x4E92;&#x3002;</p>
 <p>&#x4E8E;&#x662F;&#x5C31;&#x6709;&#x4E86;&#xFF0C;JIT&#xFF08;Just-in-time&#xFF09;&#xFF0C;JIT &#x662F;&#x4E24;&#x79CD;&#x6A21;&#x5F0F;&#x7684;&#x6DF7;&#x5408;&#x3002;</p>
 <p><img src="../assets/2017_09_02.jpg" alt=""></p>
@@ -355,7 +368,7 @@ scopeTest();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"JavaScript 语法解析、AST、V8、JIT","level":"1.4","depth":1,"next":{"title":"JavaScript Event Loop","level":"1.5","depth":1,"path":"201710/eventloop.md","ref":"201710/eventloop.md","articles":[]},"previous":{"title":"JavaScript 起源","level":"1.3","depth":1,"path":"201709/origin.md","ref":"201709/origin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201709/runtime.md","mtime":"2017-10-14T09:38:37.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-04T10:16:23.722Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JavaScript 语法解析、AST、V8、JIT","level":"1.4","depth":1,"next":{"title":"JavaScript Event Loop","level":"1.5","depth":1,"path":"201710/eventloop.md","ref":"201710/eventloop.md","articles":[]},"previous":{"title":"JavaScript 起源","level":"1.3","depth":1,"path":"201709/origin.md","ref":"201709/origin.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"201709/runtime.md","mtime":"2017-11-05T09:09:55.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-08T10:14:33.745Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
