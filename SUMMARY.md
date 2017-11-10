@@ -6,6 +6,7 @@
 * [JavaScript 语法解析、AST、V8、JIT](201709/runtime.md)
 * [JavaScript Event Loop](201710/eventloop.md)
 * [JavaScript 内存管理](201710/gc.md)
+* [this、apply、call、bind](201711/this.md)
 * [递归、闭包、原型、继承](201710/function.md)
 * [JavaScript 函数式编程](201710/functional.md)
 * [JavaScript 异步流程控制](201711/process.md)
