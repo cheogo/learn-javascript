@@ -2,7 +2,7 @@
 
 #### 隐式绑定的 this
 
-`this` 实际上是在函数被调用时绑定的，它指向什么完全取决于函数在哪里被调用。
+`this` 实际上是在函数被调用时绑定的，它指向什么完全取决于函数的调用方式。
 
 ``` javascript
 var obj = {
@@ -17,7 +17,7 @@ obj.foo() // 1
 foo2() // undefined
 ```
 
-如果没有显式的指定函数的运行对象，默认的 `this` 会绑定到运行环境的全局对象上。
+如果没有指定函数的运行对象，默认的 `this` 会隐式的绑定到运行环境的全局对象上。
 
 ``` javascript
 function foo() {
@@ -27,7 +27,7 @@ a = 'global'
 foo() // global
 ```
 
-看一个常见的例子，如果是回调函数，即使你传入了 `obj.foo` 还是会丢失 `this`。
+看一个常见但是有点出乎意料的的例子，如果是回调函数，即使你传入了 `obj.foo` 还是会丢失 `this`。
 
 ``` javascript
 function foo() {
@@ -54,12 +54,15 @@ obj1.obj2.foo(); // 11
 
 其实 this 的指向都有规律可言，在隐式绑定的 this 中，`this 绑定的是调用它的对像`。我们回过头解释上面例子。
 
-在第一、第二个例子中 `foo2()` 和 `foo()` 如果理解成 `global.foo2()` 或者 `global.foo()` 在浏览器中是 `window` 那么就合情合理了。第三个例子涉及 JS 执行的原理，`doFoo` 函数在执行时会先执行 `fn = obj.foo` 然后执行 `window.fn()` 是不是又回到了前面。
+第一个例子的 `foo2()` 和第二个例子的 `foo()` 其实是在 `window` (global) 对象上运行的，对应的打印值就合乎情理了。第三个例子涉及 JS 执行的原理，传入的 `obj.foo` 被赋值到 `fn` 上，所以本质上是 `fn = obj.foo; window.fn()`，因此 `this` 指向了 `window` 。
+
 
 
 #### 显式绑定的 this
 
-隐式绑定的 `this` 能为我们带来很多灵活性，但是有时我们需要指定函数运行的 `this` ，这就需要 `apply、call、bind` 这三个绑定在 `Function.prototype` 上的函数了（关于 prototype 我们会在后面的章节提到）。
+隐式绑定的 `this` 能为我们带来很多灵活性，但是有时我们需要显式的指定函数运行的 `this` 。
+
+比如 `apply、call、bind` 这三个绑定在 `Function.prototype` 上的函数（关于 prototype 我们会在后面的章节提到），让我们先看看具体 API。
 
 ``` javascript
 fun.apply(thisArg, [argsArray])
@@ -67,7 +70,7 @@ fun.call(thisArg, arg1, arg2, ...)
 fun.bind(thisArg[, arg1[, arg2[, ...]]])
 ```
 
-他们的语法十分相近，第一个参赛指定函数的 this 环境，后面的参赛指定函数需要的参数，最大的区别是 `bind` 不是执行 `fun` 而是返回一个函数，我们看看如何来用它们显式绑定 this。
+它们的语法十分相近，第一个参赛指定函数的 this 环境，后面的参赛指定函数需要的参数，最大的区别是 `bind` 不是执行 `fun` 而是返回一个函数，我们看看如何来用它们显式绑定 this。
 
 ``` javascript
 var obj1 = { a: 1 }
@@ -93,9 +96,7 @@ foo.apply(obj2)     // 1
 foo.call(obj2)      // 1
 ```
 
-#### 补充
-
-对于 this 的影响还有 `new` 和 `=>` 尖头函数。
+另外我们还可以使用 `new` 和 `=>` 尖头函数。
 
 `new` 关键字把 this 指向实例，这个过程发生了什么，我们会在[后面章节](http://localhost:4000/201710/function.html)讨论。
 
@@ -110,7 +111,7 @@ var bar = new foo(2)
 foo.sayA() // 2
 ```
 
-尖头函数十分特别，你可以把它理解为 bind 函数的语法糖，它的 this 同外层函数的 this。
+而尖头函数十分特别，你可以把它理解为 bind 函数的语法糖，它的 this 同外层函数的 this。
 
 ``` javascript
 var obj = {

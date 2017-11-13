@@ -1,6 +1,6 @@
 # 《前端基础漫游指南》
 
-欢迎 Star，关注请 Watch
+欢迎 Star，关注请 Watch，探讨 Issues。
 
 #### 目录
 
