@@ -108,7 +108,7 @@ foo.prototype.sayA = function () {
   console.log(this.a)
 }
 var bar = new foo(2)
-foo.sayA() // 2
+bar.sayA() // 2
 ```
 
 而尖头函数十分特别，你可以把它理解为 bind 函数的语法糖，它的 this 同外层函数的 this。
